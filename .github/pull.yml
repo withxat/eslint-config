@@ -1,0 +1,5 @@
+version: '1'
+rules:
+  - base: upstream
+    upstream: antfu:main
+    mergeMethod: hardreset
