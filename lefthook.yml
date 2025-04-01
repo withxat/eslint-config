@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: lint
+      glob: '*.{js,ts,jsx,tsx,htm,html,json,yml,yaml,css,toml,astro,less,scss,md,xml,vue}'
+      run: pnpm exec eslint {staged_files} --fix --no-warn-ignored
+      stage_fixed: true
+
+    - name: typecheck
+      run: pnpm exec tsc --noEmit
+      glob: '**/*.{ts,tsx,js,jsx}'

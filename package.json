@@ -161,6 +161,7 @@
     "eslint-typegen": "catalog:dev",
     "execa": "catalog:dev",
     "jiti": "catalog:dev",
+    "lefthook": "catalog:dev",
     "pnpm-workspace-yaml": "catalog:dev",
     "prettier-plugin-astro": "catalog:peer",
     "prettier-plugin-slidev": "catalog:peer",
