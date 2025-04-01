@@ -1,6 +1,6 @@
-import type { TypedFlatConfigItem } from '../types'
+import type { TypedFlatConfigItem } from '@/types'
 
-import { pluginPerfectionist } from '../plugins'
+import { pluginPerfectionist } from '@/plugins'
 
 /**
  * Perfectionist plugin for props and items sorting.

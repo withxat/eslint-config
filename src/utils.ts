@@ -1,4 +1,4 @@
-import type { Awaitable, TypedFlatConfigItem } from './types'
+import type { Awaitable, TypedFlatConfigItem } from '@/types'
 
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'

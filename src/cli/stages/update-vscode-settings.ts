@@ -1,14 +1,14 @@
-import type { PromptResult } from '../types'
+import type { PromptResult } from '@/cli/types'
 import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 
 import process from 'node:process'
+import { vscodeSettingsString } from '@/cli/constants'
+
 import * as p from '@clack/prompts'
 
 import { green } from 'ansis'
-
-import { vscodeSettingsString } from '../constants'
 
 export async function updateVscodeSettings(result: PromptResult): Promise<void> {
   const cwd = process.cwd()

@@ -1,7 +1,7 @@
-import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types'
+import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '@/types'
 
-import { GLOB_SVELTE } from '../globs'
-import { ensurePackages, interopDefault } from '../utils'
+import { GLOB_SVELTE } from '@/globs'
+import { ensurePackages, interopDefault } from '@/utils'
 
 export async function svelte(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},

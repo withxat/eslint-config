@@ -1,15 +1,15 @@
-import type { ExtraLibrariesOption, PromptResult } from '../types'
+import type { ExtraLibrariesOption, PromptResult } from '@/cli/types'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 
 import process from 'node:process'
+import { dependenciesMap } from '@/cli/constants'
+
+import { versionsMap } from '@/cli/constants-generated'
+
 import * as p from '@clack/prompts'
-
 import c from 'ansis'
-
 import { version } from '../../../package.json'
-import { dependenciesMap } from '../constants'
-import { versionsMap } from '../constants-generated'
 
 export async function updatePackageJson(result: PromptResult): Promise<void> {
   const cwd = process.cwd()

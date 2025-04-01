@@ -1,7 +1,7 @@
-import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types'
+import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '@/types'
 
-import { GLOB_ASTRO } from '../globs'
-import { interopDefault } from '../utils'
+import { GLOB_ASTRO } from '@/globs'
+import { interopDefault } from '@/utils'
 
 export async function astro(
   options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},

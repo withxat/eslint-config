@@ -1,6 +1,7 @@
 import styleMigrate from '@stylistic/eslint-plugin-migrate'
 
-import { xat } from './src'
+// eslint-disable-next-line antfu/no-import-dist
+import { xat } from './dist/index'
 
 export default xat(
   {

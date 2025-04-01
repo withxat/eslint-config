@@ -1,9 +1,7 @@
+import type { RuleOptions } from '@/typegen'
+import type { Awaitable, ConfigNames, OptionsConfig, TypedFlatConfigItem } from '@/types'
 import type { Linter } from 'eslint'
-import type { RuleOptions } from './typegen'
-import type { Awaitable, ConfigNames, OptionsConfig, TypedFlatConfigItem } from './types'
 
-import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { isPackageExists } from 'local-pkg'
 import {
   astro,
   command,
@@ -19,6 +17,7 @@ import {
   node,
   perfectionist,
   pnpm,
+  prefer,
   react,
   solid,
   sortPackageJson,
@@ -32,10 +31,12 @@ import {
   unocss,
   vue,
   yaml,
-} from './configs'
-import { formatters } from './configs/formatters'
-import { regexp } from './configs/regexp'
-import { interopDefault, isInEditorEnv } from './utils'
+} from '@/configs'
+import { formatters } from '@/configs/formatters'
+import { regexp } from '@/configs/regexp'
+import { interopDefault, isInEditorEnv } from '@/utils'
+import { FlatConfigComposer } from 'eslint-flat-config-utils'
+import { isPackageExists } from 'local-pkg'
 
 const flatConfigProps = [
   'name',
@@ -87,6 +88,7 @@ export function xat(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
+    importAlias: enableImportAlias = true,
     jsx: enableJsx = true,
     pnpm: enableCatalogs = false, // TODO: smart detect
     react: enableReact = false,
@@ -188,6 +190,10 @@ export function xat(
 
   if (enableRegexp) {
     configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp))
+  }
+
+  if (enableImportAlias) {
+    configs.push(prefer())
   }
 
   if (options.test ?? true) {

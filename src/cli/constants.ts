@@ -1,4 +1,4 @@
-import type { ExtraLibrariesOption, FrameworkOption, PromItem } from './types'
+import type { ExtraLibrariesOption, FrameworkOption, PromItem } from '@/cli/types'
 
 import c from 'ansis'
 

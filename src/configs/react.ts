@@ -1,10 +1,10 @@
 /* eslint-disable perfectionist/sort-objects */
-import type { OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types'
+import type { OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '@/types'
+
+import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '@/globs'
+import { ensurePackages, interopDefault } from '@/utils'
 
 import { isPackageExists } from 'local-pkg'
-import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs'
-
-import { ensurePackages, interopDefault } from '../utils'
 
 // react refresh
 const ReactRefreshAllowConstantExportPackages = [

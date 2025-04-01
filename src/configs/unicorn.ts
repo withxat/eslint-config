@@ -1,6 +1,6 @@
-import type { OptionsUnicorn, TypedFlatConfigItem } from '../types'
+import type { OptionsUnicorn, TypedFlatConfigItem } from '@/types'
 
-import { pluginUnicorn } from '../plugins'
+import { pluginUnicorn } from '@/plugins'
 
 export async function unicorn(options: OptionsUnicorn = {}): Promise<TypedFlatConfigItem[]> {
   return [

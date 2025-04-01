@@ -1,4 +1,4 @@
-import type { OptionsOverrides, OptionsRegExp, TypedFlatConfigItem } from '../types'
+import type { OptionsOverrides, OptionsRegExp, TypedFlatConfigItem } from '@/types'
 
 import { configs } from 'eslint-plugin-regexp'
 

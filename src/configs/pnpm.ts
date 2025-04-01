@@ -1,6 +1,6 @@
-import type { TypedFlatConfigItem } from '../types'
+import type { TypedFlatConfigItem } from '@/types'
 
-import { interopDefault } from '../utils'
+import { interopDefault } from '@/utils'
 
 export async function pnpm(): Promise<TypedFlatConfigItem[]> {
   const [

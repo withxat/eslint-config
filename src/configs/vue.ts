@@ -5,11 +5,11 @@ import type {
   OptionsStylistic,
   OptionsVue,
   TypedFlatConfigItem,
-} from '../types'
+} from '@/types'
 
+import { GLOB_VUE } from '@/globs'
+import { ensurePackages, interopDefault } from '@/utils'
 import { mergeProcessors } from 'eslint-merge-processors'
-import { GLOB_VUE } from '../globs'
-import { ensurePackages, interopDefault } from '../utils'
 
 export async function vue(
   options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},

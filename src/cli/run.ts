@@ -1,18 +1,18 @@
 /* eslint-disable perfectionist/sort-objects */
-import type { ExtraLibrariesOption, FrameworkOption, PromptResult } from './types'
+import type { ExtraLibrariesOption, FrameworkOption, PromptResult } from '@/cli/types'
 
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
+import { extra, extraOptions, frameworkOptions, frameworks } from '@/cli/constants'
+import { updateEslintFiles } from '@/cli/stages/update-eslint-files'
+
+import { updatePackageJson } from '@/cli/stages/update-package-json'
+import { updateVscodeSettings } from '@/cli/stages/update-vscode-settings'
+import { isGitClean } from '@/cli/utils'
 import * as p from '@clack/prompts'
+
 import c from 'ansis'
-
-import { extra, extraOptions, frameworkOptions, frameworks } from './constants'
-import { updateEslintFiles } from './stages/update-eslint-files'
-import { updatePackageJson } from './stages/update-package-json'
-import { updateVscodeSettings } from './stages/update-vscode-settings'
-
-import { isGitClean } from './utils'
 
 export interface CliRunOptions {
   /**
