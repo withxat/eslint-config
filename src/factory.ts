@@ -3,34 +3,34 @@ import type { Awaitable, ConfigNames, OptionsConfig, TypedFlatConfigItem } from 
 import type { Linter } from 'eslint'
 
 import {
-  astro,
-  command,
-  comments,
-  disables,
-  ignores,
-  imports,
-  javascript,
-  jsdoc,
-  jsonc,
-  jsx,
-  markdown,
-  node,
-  perfectionist,
-  pnpm,
-  prefer,
-  react,
-  solid,
-  sortPackageJson,
-  sortTsconfig,
-  stylistic,
-  svelte,
-  test,
-  toml,
-  typescript,
-  unicorn,
-  unocss,
-  vue,
-  yaml,
+	astro,
+	command,
+	comments,
+	disables,
+	ignores,
+	imports,
+	javascript,
+	jsdoc,
+	jsonc,
+	jsx,
+	markdown,
+	node,
+	paths,
+	perfectionist,
+	pnpm,
+	react,
+	solid,
+	sortPackageJson,
+	sortTsconfig,
+	stylistic,
+	svelte,
+	test,
+	toml,
+	typescript,
+	unicorn,
+	unocss,
+	vue,
+	yaml,
 } from '@/configs'
 import { formatters } from '@/configs/formatters'
 import { regexp } from '@/configs/regexp'
@@ -39,34 +39,34 @@ import { FlatConfigComposer } from 'eslint-flat-config-utils'
 import { isPackageExists } from 'local-pkg'
 
 const flatConfigProps = [
-  'name',
-  'languageOptions',
-  'linterOptions',
-  'processor',
-  'plugins',
-  'rules',
-  'settings',
+	'name',
+	'languageOptions',
+	'linterOptions',
+	'processor',
+	'plugins',
+	'rules',
+	'settings',
 ] satisfies (keyof TypedFlatConfigItem)[]
 
 const VuePackages = [
-  'vue',
-  'nuxt',
-  'vitepress',
-  '@slidev/cli',
+	'vue',
+	'nuxt',
+	'vitepress',
+	'@slidev/cli',
 ]
 
 export const defaultPluginRenaming = {
-  '@eslint-react': 'react',
-  '@eslint-react/dom': 'react-dom',
-  '@eslint-react/hooks-extra': 'react-hooks-extra',
-  '@eslint-react/naming-convention': 'react-naming-convention',
+	'@eslint-react': 'react',
+	'@eslint-react/dom': 'react-dom',
+	'@eslint-react/hooks-extra': 'react-hooks-extra',
+	'@eslint-react/naming-convention': 'react-naming-convention',
 
-  '@stylistic': 'style',
-  '@typescript-eslint': 'ts',
-  'import-x': 'import',
-  'n': 'node',
-  'vitest': 'test',
-  'yml': 'yaml',
+	'@stylistic': 'style',
+	'@typescript-eslint': 'ts',
+	'import-x': 'import',
+	'n': 'node',
+	'vitest': 'test',
+	'yml': 'yaml',
 }
 
 /**
@@ -80,292 +80,292 @@ export const defaultPluginRenaming = {
  *  The merged ESLint configurations.
  */
 export function xat(
-  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
-  ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]
+	options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
+	...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
-  const {
-    astro: enableAstro = false,
-    autoRenamePlugins = true,
-    componentExts = [],
-    gitignore: enableGitignore = true,
-    importAlias: enableImportAlias = true,
-    jsx: enableJsx = true,
-    pnpm: enableCatalogs = false, // TODO: smart detect
-    react: enableReact = false,
-    regexp: enableRegexp = true,
-    solid: enableSolid = false,
-    svelte: enableSvelte = false,
-    typescript: enableTypeScript = isPackageExists('typescript'),
-    unicorn: enableUnicorn = true,
-    unocss: enableUnoCSS = false,
-    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
-  } = options
+	const {
+		astro: enableAstro = false,
+		autoRenamePlugins = true,
+		componentExts = [],
+		gitignore: enableGitignore = true,
+		jsx: enableJsx = true,
+		paths: enablePaths = true,
+		pnpm: enableCatalogs = false, // TODO: smart detect
+		react: enableReact = false,
+		regexp: enableRegexp = true,
+		solid: enableSolid = false,
+		svelte: enableSvelte = false,
+		typescript: enableTypeScript = isPackageExists('typescript'),
+		unicorn: enableUnicorn = true,
+		unocss: enableUnoCSS = false,
+		vue: enableVue = VuePackages.some(i => isPackageExists(i)),
+	} = options
 
-  let isInEditor = options.isInEditor
-  if (isInEditor == null) {
-    isInEditor = isInEditorEnv()
-    if (isInEditor)
-      // eslint-disable-next-line no-console
-      console.log('[@xats/eslint-config] Detected running in editor, some rules are disabled.')
-  }
+	let isInEditor = options.isInEditor
+	if (isInEditor == null) {
+		isInEditor = isInEditorEnv()
+		if (isInEditor)
+		// eslint-disable-next-line no-console
+			console.log('[@xats/eslint-config] Detected running in editor, some rules are disabled.')
+	}
 
-  const stylisticOptions = options.stylistic === false
-    ? false
-    : typeof options.stylistic === 'object'
-      ? options.stylistic
-      : {}
+	const stylisticOptions = options.stylistic === false
+		? false
+		: typeof options.stylistic === 'object'
+			? options.stylistic
+			: {}
 
-  if (stylisticOptions && !('jsx' in stylisticOptions))
-    stylisticOptions.jsx = enableJsx
+	if (stylisticOptions && !('jsx' in stylisticOptions))
+		stylisticOptions.jsx = enableJsx
 
-  const configs: Awaitable<TypedFlatConfigItem[]>[] = []
+	const configs: Awaitable<TypedFlatConfigItem[]>[] = []
 
-  if (enableGitignore) {
-    if (typeof enableGitignore !== 'boolean') {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r({
-        name: 'xat/gitignore',
-        ...enableGitignore,
-      })]))
-    }
-    else {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r({
-        name: 'xat/gitignore',
-        strict: false,
-      })]))
-    }
-  }
+	if (enableGitignore) {
+		if (typeof enableGitignore !== 'boolean') {
+			configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r({
+				name: 'xat/gitignore',
+				...enableGitignore,
+			})]))
+		}
+		else {
+			configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r({
+				name: 'xat/gitignore',
+				strict: false,
+			})]))
+		}
+	}
 
-  const typescriptOptions = resolveSubOptions(options, 'typescript')
-  const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined
+	const typescriptOptions = resolveSubOptions(options, 'typescript')
+	const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined
 
-  // Base configs
-  configs.push(
-    ignores(options.ignores),
-    javascript({
-      isInEditor,
-      overrides: getOverrides(options, 'javascript'),
-    }),
-    comments(),
-    node(),
-    jsdoc({
-      stylistic: stylisticOptions,
-    }),
-    imports({
-      stylistic: stylisticOptions,
-    }),
-    command(),
+	// Base configs
+	configs.push(
+		ignores(options.ignores),
+		javascript({
+			isInEditor,
+			overrides: getOverrides(options, 'javascript'),
+		}),
+		comments(),
+		node(),
+		jsdoc({
+			stylistic: stylisticOptions,
+		}),
+		imports({
+			stylistic: stylisticOptions,
+		}),
+		command(),
 
-    // Optional plugins (installed but not enabled by default)
-    perfectionist(),
-  )
+		// Optional plugins (installed but not enabled by default)
+		perfectionist(),
+	)
 
-  if (enableUnicorn) {
-    configs.push(unicorn(enableUnicorn === true ? {} : enableUnicorn))
-  }
+	if (enableUnicorn) {
+		configs.push(unicorn(enableUnicorn === true ? {} : enableUnicorn))
+	}
 
-  if (enableVue) {
-    componentExts.push('vue')
-  }
+	if (enableVue) {
+		componentExts.push('vue')
+	}
 
-  if (enableJsx) {
-    configs.push(jsx())
-  }
+	if (enableJsx) {
+		configs.push(jsx())
+	}
 
-  if (enableTypeScript) {
-    configs.push(typescript({
-      ...typescriptOptions,
-      componentExts,
-      overrides: getOverrides(options, 'typescript'),
-      type: options.type,
-    }))
-  }
+	if (enableTypeScript) {
+		configs.push(typescript({
+			...typescriptOptions,
+			componentExts,
+			overrides: getOverrides(options, 'typescript'),
+			type: options.type,
+		}))
+	}
 
-  if (stylisticOptions) {
-    configs.push(stylistic({
-      ...stylisticOptions,
-      lessOpinionated: options.lessOpinionated,
-      overrides: getOverrides(options, 'stylistic'),
-    }))
-  }
+	if (stylisticOptions) {
+		configs.push(stylistic({
+			...stylisticOptions,
+			lessOpinionated: options.lessOpinionated,
+			overrides: getOverrides(options, 'stylistic'),
+		}))
+	}
 
-  if (enableRegexp) {
-    configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp))
-  }
+	if (enableRegexp) {
+		configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp))
+	}
 
-  if (enableImportAlias) {
-    configs.push(prefer())
-  }
+	if (options.test ?? true) {
+		configs.push(test({
+			isInEditor,
+			overrides: getOverrides(options, 'test'),
+		}))
+	}
 
-  if (options.test ?? true) {
-    configs.push(test({
-      isInEditor,
-      overrides: getOverrides(options, 'test'),
-    }))
-  }
+	if (enableVue) {
+		configs.push(vue({
+			...resolveSubOptions(options, 'vue'),
+			overrides: getOverrides(options, 'vue'),
+			stylistic: stylisticOptions,
+			typescript: !!enableTypeScript,
+		}))
+	}
 
-  if (enableVue) {
-    configs.push(vue({
-      ...resolveSubOptions(options, 'vue'),
-      overrides: getOverrides(options, 'vue'),
-      stylistic: stylisticOptions,
-      typescript: !!enableTypeScript,
-    }))
-  }
+	if (enableReact) {
+		configs.push(react({
+			...typescriptOptions,
+			overrides: getOverrides(options, 'react'),
+			tsconfigPath,
+		}))
+	}
 
-  if (enableReact) {
-    configs.push(react({
-      ...typescriptOptions,
-      overrides: getOverrides(options, 'react'),
-      tsconfigPath,
-    }))
-  }
+	if (enableSolid) {
+		configs.push(solid({
+			overrides: getOverrides(options, 'solid'),
+			tsconfigPath,
+			typescript: !!enableTypeScript,
+		}))
+	}
 
-  if (enableSolid) {
-    configs.push(solid({
-      overrides: getOverrides(options, 'solid'),
-      tsconfigPath,
-      typescript: !!enableTypeScript,
-    }))
-  }
+	if (enableSvelte) {
+		configs.push(svelte({
+			overrides: getOverrides(options, 'svelte'),
+			stylistic: stylisticOptions,
+			typescript: !!enableTypeScript,
+		}))
+	}
 
-  if (enableSvelte) {
-    configs.push(svelte({
-      overrides: getOverrides(options, 'svelte'),
-      stylistic: stylisticOptions,
-      typescript: !!enableTypeScript,
-    }))
-  }
+	if (enableUnoCSS) {
+		configs.push(unocss({
+			...resolveSubOptions(options, 'unocss'),
+			overrides: getOverrides(options, 'unocss'),
+		}))
+	}
 
-  if (enableUnoCSS) {
-    configs.push(unocss({
-      ...resolveSubOptions(options, 'unocss'),
-      overrides: getOverrides(options, 'unocss'),
-    }))
-  }
+	if (enableAstro) {
+		configs.push(astro({
+			overrides: getOverrides(options, 'astro'),
+			stylistic: stylisticOptions,
+		}))
+	}
 
-  if (enableAstro) {
-    configs.push(astro({
-      overrides: getOverrides(options, 'astro'),
-      stylistic: stylisticOptions,
-    }))
-  }
+	if (enablePaths) {
+		configs.push(paths())
+	}
 
-  if (options.jsonc ?? true) {
-    configs.push(
-      jsonc({
-        overrides: getOverrides(options, 'jsonc'),
-        stylistic: stylisticOptions,
-      }),
-      sortPackageJson(),
-      sortTsconfig(),
-    )
-  }
+	if (options.jsonc ?? true) {
+		configs.push(
+			jsonc({
+				overrides: getOverrides(options, 'jsonc'),
+				stylistic: stylisticOptions,
+			}),
+			sortPackageJson(),
+			sortTsconfig(),
+		)
+	}
 
-  if (enableCatalogs) {
-    configs.push(
-      pnpm(),
-    )
-  }
+	if (enableCatalogs) {
+		configs.push(
+			pnpm(),
+		)
+	}
 
-  if (options.yaml ?? true) {
-    configs.push(yaml({
-      overrides: getOverrides(options, 'yaml'),
-      stylistic: stylisticOptions,
-    }))
-  }
+	if (options.yaml ?? true) {
+		configs.push(yaml({
+			overrides: getOverrides(options, 'yaml'),
+			stylistic: stylisticOptions,
+		}))
+	}
 
-  if (options.toml ?? true) {
-    configs.push(toml({
-      overrides: getOverrides(options, 'toml'),
-      stylistic: stylisticOptions,
-    }))
-  }
+	if (options.toml ?? true) {
+		configs.push(toml({
+			overrides: getOverrides(options, 'toml'),
+			stylistic: stylisticOptions,
+		}))
+	}
 
-  if (options.markdown ?? true) {
-    configs.push(
-      markdown(
-        {
-          componentExts,
-          overrides: getOverrides(options, 'markdown'),
-        },
-      ),
-    )
-  }
+	if (options.markdown ?? true) {
+		configs.push(
+			markdown(
+				{
+					componentExts,
+					overrides: getOverrides(options, 'markdown'),
+				},
+			),
+		)
+	}
 
-  if (options.formatters) {
-    configs.push(formatters(
-      options.formatters,
-      typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
-    ))
-  }
+	if (options.formatters) {
+		configs.push(formatters(
+			options.formatters,
+			typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
+		))
+	}
 
-  configs.push(
-    disables(),
-  )
+	configs.push(
+		disables(),
+	)
 
-  if ('files' in options) {
-    throw new Error('[@xats/eslint-config] The first argument should not contain the "files" property as the options are supposed to be global. Place it in the second or later config instead.')
-  }
+	if ('files' in options) {
+		throw new Error('[@xats/eslint-config] The first argument should not contain the "files" property as the options are supposed to be global. Place it in the second or later config instead.')
+	}
 
-  // User can optionally pass a flat config item to the first argument
-  // We pick the known keys as ESLint would do schema validation
-  const fusedConfig = flatConfigProps.reduce((acc, key) => {
-    if (key in options)
-      acc[key] = options[key] as any
-    return acc
-  }, {} as TypedFlatConfigItem)
-  if (Object.keys(fusedConfig).length)
-    configs.push([fusedConfig])
+	// User can optionally pass a flat config item to the first argument
+	// We pick the known keys as ESLint would do schema validation
+	const fusedConfig = flatConfigProps.reduce((acc, key) => {
+		if (key in options)
+			acc[key] = options[key] as any
+		return acc
+	}, {} as TypedFlatConfigItem)
+	if (Object.keys(fusedConfig).length)
+		configs.push([fusedConfig])
 
-  let composer = new FlatConfigComposer<TypedFlatConfigItem, ConfigNames>()
+	let composer = new FlatConfigComposer<TypedFlatConfigItem, ConfigNames>()
 
-  composer = composer
-    .append(
-      ...configs,
-      ...userConfigs as any,
-    )
+	composer = composer
+		.append(
+			...configs,
+			...userConfigs as any,
+		)
 
-  if (autoRenamePlugins) {
-    composer = composer
-      .renamePlugins(defaultPluginRenaming)
-  }
+	if (autoRenamePlugins) {
+		composer = composer
+			.renamePlugins(defaultPluginRenaming)
+	}
 
-  if (isInEditor) {
-    composer = composer
-      .disableRulesFix([
-        'unused-imports/no-unused-imports',
-        'test/no-only-tests',
-        'prefer-const',
-      ], {
-        builtinRules: () => import(['eslint', 'use-at-your-own-risk'].join('/')).then(r => r.builtinRules),
-      })
-  }
+	if (isInEditor) {
+		composer = composer
+			.disableRulesFix([
+				'unused-imports/no-unused-imports',
+				'test/no-only-tests',
+				'prefer-const',
+			], {
+				builtinRules: () => import(['eslint', 'use-at-your-own-risk'].join('/')).then(r => r.builtinRules),
+			})
+	}
 
-  return composer
+	return composer
 }
 
 export type ResolvedOptions<T> = T extends boolean
-  ? never
-  : NonNullable<T>
+	? never
+	: NonNullable<T>
 
 export function resolveSubOptions<K extends keyof OptionsConfig>(
-  options: OptionsConfig,
-  key: K,
+	options: OptionsConfig,
+	key: K,
 ): ResolvedOptions<OptionsConfig[K]> {
-  return typeof options[key] === 'boolean'
-    ? {} as any
-    : options[key] || {} as any
+	return typeof options[key] === 'boolean'
+		? {} as any
+		: options[key] || {} as any
 }
 
 export function getOverrides<K extends keyof OptionsConfig>(
-  options: OptionsConfig,
-  key: K,
+	options: OptionsConfig,
+	key: K,
 ): Partial<Linter.RulesRecord & RuleOptions> {
-  const sub = resolveSubOptions(options, key)
-  return {
-    ...(options.overrides as any)?.[key],
-    ...'overrides' in sub
-      ? sub.overrides
-      : {},
-  }
+	const sub = resolveSubOptions(options, key)
+	return {
+		...(options.overrides as any)?.[key],
+		...'overrides' in sub
+			? sub.overrides
+			: {},
+	}
 }

@@ -1,49 +1,49 @@
 import fs from 'node:fs/promises'
 
-import { astro, combine, comments, formatters, imports, javascript, jsdoc, jsonc, jsx, markdown, node, perfectionist, prefer, react, regexp, solid, sortPackageJson, stylistic, svelte, test, toml, typescript, unicorn, unocss, vue, yaml } from '@/index'
+import { astro, combine, comments, formatters, imports, javascript, jsdoc, jsonc, jsx, markdown, node, paths, perfectionist, react, regexp, solid, sortPackageJson, stylistic, svelte, test, toml, typescript, unicorn, unocss, vue, yaml } from '@/index'
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 
 import { builtinRules } from 'eslint/use-at-your-own-risk'
 
 const configs = await combine(
-  {
-    plugins: {
-      '': {
-        rules: Object.fromEntries(builtinRules.entries()),
-      },
-    },
-  },
-  astro(),
-  comments(),
-  prefer(),
-  formatters(),
-  imports(),
-  javascript(),
-  jsx(),
-  jsdoc(),
-  jsonc(),
-  markdown(),
-  node(),
-  perfectionist(),
-  react(),
-  solid(),
-  sortPackageJson(),
-  stylistic(),
-  svelte(),
-  test(),
-  toml(),
-  regexp(),
-  typescript(),
-  unicorn(),
-  unocss(),
-  vue(),
-  yaml(),
+	{
+		plugins: {
+			'': {
+				rules: Object.fromEntries(builtinRules.entries()),
+			},
+		},
+	},
+	astro(),
+	comments(),
+	paths(),
+	formatters(),
+	imports(),
+	javascript(),
+	jsx(),
+	jsdoc(),
+	jsonc(),
+	markdown(),
+	node(),
+	perfectionist(),
+	react(),
+	solid(),
+	sortPackageJson(),
+	stylistic(),
+	svelte(),
+	test(),
+	toml(),
+	regexp(),
+	typescript(),
+	unicorn(),
+	unocss(),
+	vue(),
+	yaml(),
 )
 
 const configNames = configs.map(i => i.name).filter(Boolean) as string[]
 
 let dts = await flatConfigsToRulesDTS(configs, {
-  includeAugmentation: false,
+	includeAugmentation: false,
 })
 
 dts += `

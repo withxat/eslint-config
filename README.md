@@ -70,19 +70,19 @@ import { FlatCompat } from '@eslint/eslintrc'
 const compat = new FlatCompat()
 
 export default antfu(
-  {
-    ignores: [],
-  },
+	{
+		ignores: [],
+	},
 
-  // Legacy config
-  ...compat.config({
-    extends: [
-      'eslint:recommended',
-      // Other extends...
-    ],
-  })
+	// Legacy config
+	...compat.config({
+		extends: [
+			'eslint:recommended',
+			// Other extends...
+		],
+	})
 
-  // Other flat configs...
+	// Other flat configs...
 )
 ```
 
@@ -272,30 +272,30 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
 // Type of the project. 'lib' for libraries, the default is 'app'
-  type: 'lib',
+	type: 'lib',
 
-  // Enable stylistic formatting rules
-  // stylistic: true,
+	// Enable stylistic formatting rules
+	// stylistic: true,
 
-  // Or customize the stylistic rules
-  stylistic: {
-    indent: 2, // 4, or 'tab'
-    quotes: 'single', // or 'double'
-  },
+	// Or customize the stylistic rules
+	stylistic: {
+		indent: 2, // 4, or 'tab'
+		quotes: 'single', // or 'double'
+	},
 
-  // TypeScript and Vue are autodetected, you can also explicitly enable them:
-  typescript: true,
-  vue: true,
+	// TypeScript and Vue are autodetected, you can also explicitly enable them:
+	typescript: true,
+	vue: true,
 
-  // Disable jsonc and yaml support
-  jsonc: false,
-  yaml: false,
+	// Disable jsonc and yaml support
+	jsonc: false,
+	yaml: false,
 
-  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-  ignores: [
-    '**/fixtures',
-    // ...globs
-  ]
+	// `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+	ignores: [
+		'**/fixtures',
+		// ...globs
+	]
 })
 ```
 
@@ -306,19 +306,19 @@ The `antfu` factory function also accepts any number of arbitrary custom config 
 import antfu from '@antfu/eslint-config'
 
 export default antfu(
-  {
-    // Configures for antfu's config
-  },
+	{
+		// Configures for antfu's config
+	},
 
-  // From the second arguments they are ESLint Flat Configs
-  // you can have multiple configs
-  {
-    files: ['**/*.ts'],
-    rules: {},
-  },
-  {
-    rules: {},
-  },
+	// From the second arguments they are ESLint Flat Configs
+	// you can have multiple configs
+	{
+		files: ['**/*.ts'],
+		rules: {},
+	},
+	{
+		rules: {},
+	},
 )
 ```
 
@@ -332,40 +332,40 @@ We wouldn't recommend using this style in general unless you know exactly what t
 ```js
 // eslint.config.js
 import {
-  combine,
-  comments,
-  ignores,
-  imports,
-  javascript,
-  jsdoc,
-  jsonc,
-  markdown,
-  node,
-  sortPackageJson,
-  sortTsconfig,
-  stylistic,
-  toml,
-  typescript,
-  unicorn,
-  vue,
-  yaml,
+	combine,
+	comments,
+	ignores,
+	imports,
+	javascript,
+	jsdoc,
+	jsonc,
+	markdown,
+	node,
+	sortPackageJson,
+	sortTsconfig,
+	stylistic,
+	toml,
+	typescript,
+	unicorn,
+	vue,
+	yaml,
 } from '@antfu/eslint-config'
 
 export default combine(
-  ignores(),
-  javascript(/* Options */),
-  comments(),
-  node(),
-  jsdoc(),
-  imports(),
-  unicorn(),
-  typescript(/* Options */),
-  stylistic(),
-  vue(),
-  jsonc(),
-  yaml(),
-  toml(),
-  markdown(),
+	ignores(),
+	javascript(/* Options */),
+	comments(),
+	node(),
+	jsdoc(),
+	imports(),
+	unicorn(),
+	typescript(/* Options */),
+	stylistic(),
+	vue(),
+	jsonc(),
+	yaml(),
+	toml(),
+	markdown(),
 )
 ```
 
@@ -417,12 +417,12 @@ If you really want to use the original prefix, you can revert the plugin renamin
 import antfu from '@antfu/eslint-config'
 
 export default antfu()
-  .renamePlugins({
-    ts: '@typescript-eslint',
-    yaml: 'yml',
-    node: 'n'
-    // ...
-  })
+	.renamePlugins({
+		ts: '@typescript-eslint',
+		yaml: 'yml',
+		node: 'n'
+		// ...
+	})
 ```
 
 </details>
@@ -436,23 +436,23 @@ Certain rules would only be enabled in specific files, for example, `ts/*` rules
 import antfu from '@antfu/eslint-config'
 
 export default antfu(
-  {
-    vue: true,
-    typescript: true
-  },
-  {
-    // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
-    files: ['**/*.vue'],
-    rules: {
-      'vue/operator-linebreak': ['error', 'before'],
-    },
-  },
-  {
-    // Without `files`, they are general rules for all files
-    rules: {
-      'style/semi': ['error', 'never'],
-    },
-  }
+	{
+		vue: true,
+		typescript: true
+	},
+	{
+		// Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
+		files: ['**/*.vue'],
+		rules: {
+			'vue/operator-linebreak': ['error', 'before'],
+		},
+	},
+	{
+		// Without `files`, they are general rules for all files
+		rules: {
+			'style/semi': ['error', 'never'],
+		},
+	}
 )
 ```
 
@@ -463,21 +463,21 @@ We also provided the `overrides` options in each integration to make it easier:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  vue: {
-    overrides: {
-      'vue/operator-linebreak': ['error', 'before'],
-    },
-  },
-  typescript: {
-    overrides: {
-      'ts/consistent-type-definitions': ['error', 'interface'],
-    },
-  },
-  yaml: {
-    overrides: {
-      // ...
-    },
-  },
+	vue: {
+		overrides: {
+			'vue/operator-linebreak': ['error', 'before'],
+		},
+	},
+	typescript: {
+		overrides: {
+			'ts/consistent-type-definitions': ['error', 'interface'],
+		},
+	},
+	yaml: {
+		overrides: {
+			// ...
+		},
+	},
 })
 ```
 
@@ -490,23 +490,23 @@ Since v2.10.0, the factory function `antfu()` returns a [`FlatConfigComposer` ob
 import antfu from '@antfu/eslint-config'
 
 export default antfu()
-  .prepend(
-    // some configs before the main config
-  )
-  // overrides any named configs
-  .override(
-    'antfu/imports',
-    {
-      rules: {
-        'import/order': ['error', { 'newlines-between': 'always' }],
-      }
-    }
-  )
-  // rename plugin prefixes
-  .renamePlugins({
-    'old-prefix': 'new-prefix',
-    // ...
-  })
+	.prepend(
+		// some configs before the main config
+	)
+// overrides any named configs
+	.override(
+		'antfu/imports',
+		{
+			rules: {
+				'import/order': ['error', { 'newlines-between': 'always' }],
+			}
+		}
+	)
+// rename plugin prefixes
+	.renamePlugins({
+		'old-prefix': 'new-prefix',
+		// ...
+	})
 // ...
 ```
 
@@ -519,7 +519,7 @@ Vue support is detected automatically by checking if `vue` is installed in your 
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  vue: true
+	vue: true
 })
 ```
 
@@ -532,9 +532,9 @@ We have limited support for Vue 2 (as it's already [reached EOL](https://v2.vuej
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  vue: {
-    vueVersion: 2
-  },
+	vue: {
+		vueVersion: 2
+	},
 })
 ```
 
@@ -549,9 +549,9 @@ To enable Vue accessibility support, you need to explicitly turn it on:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  vue: {
-    a11y: true
-  },
+	vue: {
+		a11y: true
+	},
 })
 ```
 
@@ -569,29 +569,29 @@ We provide some optional configs for specific use cases, that we don't include t
 
 Use external formatters to format files that ESLint cannot handle yet (`.css`, `.html`, etc). Powered by [`eslint-plugin-format`](https://github.com/antfu/eslint-plugin-format).
 
-```js
+```ts
 // eslint.config.js
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  formatters: {
-    /**
-     * Format CSS, LESS, SCSS files, also the `<style>` blocks in Vue
-     * By default uses Prettier
-     */
-    css: true,
-    /**
-     * Format HTML files
-     * By default uses Prettier
-     */
-    html: true,
-    /**
-     * Format Markdown files
-     * Supports Prettier and dprint
-     * By default uses Prettier
-     */
-    markdown: 'prettier'
-  }
+	formatters: {
+		/**
+		 * Format CSS, LESS, SCSS files, also the `<style>` blocks in Vue
+		 * By default uses Prettier
+		 */
+		css: true,
+		/**
+		 * Format HTML files
+		 * By default uses Prettier
+		 */
+		html: true,
+		/**
+		 * Format Markdown files
+		 * Supports Prettier and dprint
+		 * By default uses Prettier
+		 */
+		markdown: 'prettier'
+	}
 })
 ```
 
@@ -610,7 +610,7 @@ To enable React support, you need to explicitly turn it on:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  react: true,
+	react: true,
 })
 ```
 
@@ -629,7 +629,7 @@ To enable svelte support, you need to explicitly turn it on:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  svelte: true,
+	svelte: true,
 })
 ```
 
@@ -648,7 +648,7 @@ To enable astro support, you need to explicitly turn it on:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  astro: true,
+	astro: true,
 })
 ```
 
@@ -667,7 +667,7 @@ To enable Solid support, you need to explicitly turn it on:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  solid: true,
+	solid: true,
 })
 ```
 
@@ -686,7 +686,7 @@ To enable UnoCSS support, you need to explicitly turn it on:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  unocss: true,
+	unocss: true,
 })
 ```
 
@@ -728,7 +728,7 @@ Will be transformed to this when you hit save with your editor or run `eslint --
 
 ```ts
 async function foo(msg: string): void {
-  console.log(msg)
+	console.log(msg)
 }
 ```
 
@@ -743,9 +743,9 @@ You can optionally enable the [type aware rules](https://typescript-eslint.io/li
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  typescript: {
-    tsconfigPath: 'tsconfig.json',
-  },
+	typescript: {
+		tsconfigPath: 'tsconfig.json',
+	},
 })
 ```
 
@@ -766,7 +766,7 @@ This is to prevent unused imports from getting removed by the editor during refa
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  isInEditor: false
+	isInEditor: false
 })
 ```
 
@@ -859,7 +859,7 @@ I know they are not necessarily the popular opinions. If you really want to get 
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-  lessOpinionated: true
+	lessOpinionated: true
 })
 ```
 
