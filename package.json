@@ -30,7 +30,7 @@
   "scripts": {
     "build": "nr gen && tsup --clean --dts",
     "stub": "tsup",
-    "dev": "npx @eslint/config-inspector --config eslint.config.ts",
+    "dev": "npx @eslint/config-inspector --config eslint.config.js",
     "build:inspector": "pnpm build && npx @eslint/config-inspector build",
     "watch": "tsup --watch",
     "lint": "eslint",
@@ -105,14 +105,12 @@
     "bumpp": "catalog:dev",
     "eslint-typegen": "catalog:dev",
     "execa": "catalog:dev",
-    "jiti": "catalog:dev",
     "lefthook": "catalog:dev",
     "pnpm-workspace-yaml": "catalog:dev",
     "tinyglobby": "catalog:dev",
     "tsup": "catalog:dev",
     "tsx": "catalog:dev",
     "typescript": "catalog:dev",
-    "vitest": "catalog:dev",
     "vue": "catalog:dev"
   }
 }
