@@ -9,10 +9,10 @@ import { run } from './run'
 
 function header(): void {
   console.log('\n')
-  p.intro(`${c.green`@antfu/eslint-config `}${c.dim`v${version}`}`)
+  p.intro(`${c.green`@xats/eslint-config `}${c.dim`v${version}`}`)
 }
 
-const cli = cac('@antfu/eslint-config')
+const cli = cac('@xats/eslint-config')
 
 cli
   .command('', 'Run the initialization or migration')

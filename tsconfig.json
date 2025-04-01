@@ -4,7 +4,11 @@
     "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "skipLibCheck": true
   },

@@ -1,4 +1,4 @@
-import type { OptionsConfig, TypedFlatConfigItem } from '../src/types'
+import type { OptionsConfig, TypedFlatConfigItem } from '@/types'
 
 import fs from 'node:fs/promises'
 import { join, resolve } from 'node:path'
@@ -126,9 +126,9 @@ function runWithConfig(name: string, configs: OptionsConfig, ...items: TypedFlat
     })
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
-import antfu from '@antfu/eslint-config'
+import { xat } from '@xats/eslint-config'
 
-export default antfu(
+export default xat(
   ${JSON.stringify(configs)},
   ...${JSON.stringify(items) ?? []},
 )

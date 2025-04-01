@@ -36,10 +36,10 @@ export async function javascript(
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      name: 'antfu/javascript/setup',
+      name: 'xat/javascript/setup',
     },
     {
-      name: 'antfu/javascript/rules',
+      name: 'xat/javascript/rules',
       plugins: {
         'antfu': pluginAntfu,
         'unused-imports': pluginUnusedImports,

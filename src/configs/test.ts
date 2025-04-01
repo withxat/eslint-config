@@ -35,14 +35,14 @@ export async function test(
 
   return [
     {
-      name: 'antfu/test/setup',
+      name: 'xat/test/setup',
       plugins: {
         test: _pluginTest,
       },
     },
     {
       files,
-      name: 'antfu/test/rules',
+      name: 'xat/test/rules',
       rules: {
         'test/consistent-test-it': ['error', { fn: 'it', withinDescribe: 'it' }],
         'test/no-identical-title': 'error',

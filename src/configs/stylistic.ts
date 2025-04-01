@@ -41,7 +41,7 @@ export async function stylistic(
 
   return [
     {
-      name: 'antfu/stylistic/rules',
+      name: 'xat/stylistic/rules',
       plugins: {
         antfu: pluginAntfu,
         style: pluginStylistic,

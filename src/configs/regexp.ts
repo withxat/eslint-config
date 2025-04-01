@@ -21,7 +21,7 @@ export async function regexp(
   return [
     {
       ...config,
-      name: 'antfu/regexp/rules',
+      name: 'xat/regexp/rules',
       rules: {
         ...rules,
         ...options.overrides,

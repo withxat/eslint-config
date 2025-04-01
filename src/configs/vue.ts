@@ -70,7 +70,7 @@ export async function vue(
           watchEffect: 'readonly',
         },
       },
-      name: 'antfu/vue/setup',
+      name: 'xat/vue/setup',
       plugins: {
         vue: pluginVue,
         ...a11y ? { 'vue-a11y': pluginVueA11y } : {},
@@ -91,7 +91,7 @@ export async function vue(
           sourceType: 'module',
         },
       },
-      name: 'antfu/vue/rules',
+      name: 'xat/vue/rules',
       processor: sfcBlocks === false
         ? pluginVue.processors['.vue']
         : mergeProcessors([

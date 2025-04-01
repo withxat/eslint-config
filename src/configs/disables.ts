@@ -6,7 +6,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
   return [
     {
       files: [`**/scripts/${GLOB_SRC}`],
-      name: 'antfu/disables/scripts',
+      name: 'xat/disables/scripts',
       rules: {
         'antfu/no-top-level-await': 'off',
         'no-console': 'off',
@@ -15,7 +15,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: [`**/cli/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
-      name: 'antfu/disables/cli',
+      name: 'xat/disables/cli',
       rules: {
         'antfu/no-top-level-await': 'off',
         'no-console': 'off',
@@ -23,7 +23,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
-      name: 'antfu/disables/bin',
+      name: 'xat/disables/bin',
       rules: {
         'antfu/no-import-dist': 'off',
         'antfu/no-import-node-modules-by-path': 'off',
@@ -31,7 +31,7 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ['**/*.d.?([cm])ts'],
-      name: 'antfu/disables/dts',
+      name: 'xat/disables/dts',
       rules: {
         'eslint-comments/no-unlimited-disable': 'off',
         'import/no-duplicates': 'off',
@@ -41,14 +41,14 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ['**/*.js', '**/*.cjs'],
-      name: 'antfu/disables/cjs',
+      name: 'xat/disables/cjs',
       rules: {
         'ts/no-require-imports': 'off',
       },
     },
     {
       files: [`**/*.config.${GLOB_SRC_EXT}`, `**/*.config.*.${GLOB_SRC_EXT}`],
-      name: 'antfu/disables/config-files',
+      name: 'xat/disables/config-files',
       rules: {
         'antfu/no-top-level-await': 'off',
         'no-console': 'off',

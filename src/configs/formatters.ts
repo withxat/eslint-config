@@ -91,7 +91,7 @@ export async function formatters(
 
   const configs: TypedFlatConfigItem[] = [
     {
-      name: 'antfu/formatter/setup',
+      name: 'xat/formatter/setup',
       plugins: {
         format: pluginFormat,
       },
@@ -105,7 +105,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'antfu/formatter/css',
+        name: 'xat/formatter/css',
         rules: {
           'format/prettier': [
             'error',
@@ -120,7 +120,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'antfu/formatter/scss',
+        name: 'xat/formatter/scss',
         rules: {
           'format/prettier': [
             'error',
@@ -135,7 +135,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'antfu/formatter/less',
+        name: 'xat/formatter/less',
         rules: {
           'format/prettier': [
             'error',
@@ -154,7 +154,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/html',
+      name: 'xat/formatter/html',
       rules: {
         'format/prettier': [
           'error',
@@ -172,7 +172,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/xml',
+      name: 'xat/formatter/xml',
       rules: {
         'format/prettier': [
           'error',
@@ -192,7 +192,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/svg',
+      name: 'xat/formatter/svg',
       rules: {
         'format/prettier': [
           'error',
@@ -224,7 +224,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/markdown',
+      name: 'xat/formatter/markdown',
       rules: {
         [`format/${formater}`]: [
           'error',
@@ -247,7 +247,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'antfu/formatter/slidev',
+        name: 'xat/formatter/slidev',
         rules: {
           'format/prettier': [
             'error',
@@ -270,7 +270,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/astro',
+      name: 'xat/formatter/astro',
       rules: {
         'format/prettier': [
           'error',
@@ -286,7 +286,7 @@ export async function formatters(
 
     configs.push({
       files: [GLOB_ASTRO, GLOB_ASTRO_TS],
-      name: 'antfu/formatter/astro/disables',
+      name: 'xat/formatter/astro/disables',
       rules: {
         'style/arrow-parens': 'off',
         'style/block-spacing': 'off',
@@ -305,7 +305,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/graphql',
+      name: 'xat/formatter/graphql',
       rules: {
         'format/prettier': [
           'error',

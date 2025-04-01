@@ -1,8 +1,8 @@
 import styleMigrate from '@stylistic/eslint-plugin-migrate'
 
-import { antfu } from './src'
+import { xat } from './src'
 
-export default antfu(
+export default xat(
   {
     vue: {
       a11y: true,

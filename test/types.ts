@@ -1,6 +1,6 @@
-import type { Linter } from 'eslint'
+import type { TypedFlatConfigItem } from '@/types'
 
-import type { TypedFlatConfigItem } from '../src'
+import type { Linter } from 'eslint'
 
 // Make sure they are compatible
 ((): Linter.Config => ({} as TypedFlatConfigItem))();
