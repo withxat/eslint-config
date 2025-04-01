@@ -16,6 +16,15 @@ export async function unicorn(options: OptionsUnicorn = {}): Promise<TypedFlatCo
 							'unicorn/consistent-empty-array-spread': 'error',
 							'unicorn/error-message': 'error',
 							'unicorn/escape-case': 'error',
+							'unicorn/filename-case': ['error', {
+								case: 'kebabCase',
+								ignore: [
+									'README\\.md$',
+									'CONTRIBUTING\\.md$',
+									'CODE_OF_CONDUCT\\.md$',
+									'SECURITY\\.md$',
+								],
+							}],
 							'unicorn/new-for-builtins': 'error',
 							'unicorn/no-instanceof-builtins': 'error',
 							'unicorn/no-new-array': 'error',
