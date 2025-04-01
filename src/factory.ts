@@ -55,6 +55,12 @@ const VuePackages = [
 	'@slidev/cli',
 ]
 
+const UnocssPackages = [
+	'unocss',
+	'tailwindcss',
+	'@tailwindcss/cli',
+]
+
 export const defaultPluginRenaming = {
 	'@eslint-react': 'react',
 	'@eslint-react/dom': 'react-dom',
@@ -84,20 +90,20 @@ export function xat(
 	...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
 	const {
-		astro: enableAstro = false,
+		astro: enableAstro = isPackageExists('astro'),
 		autoRenamePlugins = true,
 		componentExts = [],
 		gitignore: enableGitignore = true,
 		jsx: enableJsx = true,
 		paths: enablePaths = true,
-		pnpm: enableCatalogs = false, // TODO: smart detect
-		react: enableReact = false,
+		pnpm: enableCatalogs = false,
+		react: enableReact = isPackageExists('react'),
 		regexp: enableRegexp = true,
-		solid: enableSolid = false,
-		svelte: enableSvelte = false,
+		solid: enableSolid = isPackageExists('solid-js'),
+		svelte: enableSvelte = isPackageExists('svelte'),
 		typescript: enableTypeScript = isPackageExists('typescript'),
 		unicorn: enableUnicorn = true,
-		unocss: enableUnoCSS = false,
+		unocss: enableUnoCSS = UnocssPackages.some(i => isPackageExists(i)),
 		vue: enableVue = VuePackages.some(i => isPackageExists(i)),
 	} = options
 

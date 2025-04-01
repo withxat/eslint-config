@@ -2,7 +2,7 @@
 import type { OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '@/types'
 
 import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '@/globs'
-import { ensurePackages, interopDefault } from '@/utils'
+import { interopDefault } from '@/utils'
 
 import { isPackageExists } from 'local-pkg'
 
@@ -39,12 +39,6 @@ export async function react(
 		overrides = {},
 		tsconfigPath,
 	} = options
-
-	await ensurePackages([
-		'@eslint-react/eslint-plugin',
-		'eslint-plugin-react-hooks',
-		'eslint-plugin-react-refresh',
-	])
 
 	const isTypeAware = !!tsconfigPath
 

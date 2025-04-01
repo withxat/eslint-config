@@ -1,6 +1,6 @@
 import type { OptionsUnoCSS, TypedFlatConfigItem } from '@/types'
 
-import { ensurePackages, interopDefault } from '@/utils'
+import { interopDefault } from '@/utils'
 
 export async function unocss(
 	options: OptionsUnoCSS = {},
@@ -9,10 +9,6 @@ export async function unocss(
 		attributify = true,
 		strict = false,
 	} = options
-
-	await ensurePackages([
-		'@unocss/eslint-plugin',
-	])
 
 	const [
 		pluginUnoCSS,

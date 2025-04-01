@@ -2,7 +2,7 @@ import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '@/
 import type { VendoredPrettierOptions, VendoredPrettierRuleOptions } from '@/vender/prettier-types'
 import { StylisticConfigDefaults } from '@/configs/stylistic'
 import { GLOB_ASTRO, GLOB_ASTRO_TS, GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '@/globs'
-import { ensurePackages, interopDefault, isPackageInScope, parserPlain } from '@/utils'
+import { interopDefault, parserPlain } from '@/utils'
 import { isPackageExists } from 'local-pkg'
 
 function mergePrettierOptions(
@@ -24,25 +24,17 @@ export async function formatters(
 	stylistic: StylisticConfig = {},
 ): Promise<TypedFlatConfigItem[]> {
 	if (options === true) {
-		const isPrettierPluginXmlInScope = isPackageInScope('@prettier/plugin-xml')
 		options = {
-			astro: isPackageInScope('prettier-plugin-astro'),
+			astro: isPackageExists('astro'),
 			css: true,
 			graphql: true,
 			html: true,
 			markdown: true,
 			slidev: isPackageExists('@slidev/cli'),
-			svg: isPrettierPluginXmlInScope,
-			xml: isPrettierPluginXmlInScope,
+			svg: true,
+			xml: true,
 		}
 	}
-
-	await ensurePackages([
-		'eslint-plugin-format',
-		options.markdown && options.slidev ? 'prettier-plugin-slidev' : undefined,
-		options.astro ? 'prettier-plugin-astro' : undefined,
-		(options.xml || options.svg) ? '@prettier/plugin-xml' : undefined,
-	])
 
 	if (options.slidev && options.markdown !== true && options.markdown !== 'prettier')
 		throw new Error('`slidev` option only works when `markdown` is enabled with `prettier`')

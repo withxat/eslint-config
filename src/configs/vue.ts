@@ -8,7 +8,7 @@ import type {
 } from '@/types'
 
 import { GLOB_VUE } from '@/globs'
-import { ensurePackages, interopDefault } from '@/utils'
+import { interopDefault } from '@/utils'
 import { mergeProcessors } from 'eslint-merge-processors'
 
 export async function vue(
@@ -29,12 +29,6 @@ export async function vue(
 	const {
 		indent = 2,
 	} = typeof stylistic === 'boolean' ? {} : stylistic
-
-	if (a11y) {
-		await ensurePackages([
-			'eslint-plugin-vuejs-accessibility',
-		])
-	}
 
 	const [
 		pluginVue,
