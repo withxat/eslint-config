@@ -21,13 +21,10 @@ import {
 	node,
 	paths,
 	perfectionist,
-	pnpm,
 	react,
-	solid,
 	sortPackageJson,
 	sortTsconfig,
 	stylistic,
-	svelte,
 	test,
 	toml,
 	typescript,
@@ -92,11 +89,8 @@ export function xat(
 		gitignore: enableGitignore = true,
 		jsx: enableJsx = true,
 		paths: enablePaths = true,
-		pnpm: enableCatalogs = false,
 		react: enableReact = isPackageExists('react'),
 		regexp: enableRegexp = true,
-		solid: enableSolid = isPackageExists('solid-js'),
-		svelte: enableSvelte = isPackageExists('svelte'),
 		typescript: enableTypeScript = isPackageExists('typescript'),
 		unicorn: enableUnicorn = true,
 		unocss: enableUnoCSS = isPackageExists('unocss'),
@@ -218,22 +212,6 @@ export function xat(
 		}))
 	}
 
-	if (enableSolid) {
-		configs.push(solid({
-			overrides: getOverrides(options, 'solid'),
-			tsconfigPath,
-			typescript: !!enableTypeScript,
-		}))
-	}
-
-	if (enableSvelte) {
-		configs.push(svelte({
-			overrides: getOverrides(options, 'svelte'),
-			stylistic: stylisticOptions,
-			typescript: !!enableTypeScript,
-		}))
-	}
-
 	if (enableUnoCSS) {
 		configs.push(unocss({
 			...resolveSubOptions(options, 'unocss'),
@@ -260,12 +238,6 @@ export function xat(
 			}),
 			sortPackageJson(),
 			sortTsconfig(),
-		)
-	}
-
-	if (enableCatalogs) {
-		configs.push(
-			pnpm(),
 		)
 	}
 
@@ -365,7 +337,6 @@ export function getOverrides<K extends keyof OptionsConfig>(
 ): Partial<RuleOptions & Linter.RulesRecord> {
 	const sub = resolveSubOptions(options, key)
 	return {
-		...(options.overrides as any)?.[key],
 		...'overrides' in sub
 			? sub.overrides
 			: {},
