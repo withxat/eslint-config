@@ -141,9 +141,6 @@ importers:
       '@eslint/config-inspector':
         specifier: ^1.0.2
         version: 1.0.2(eslint@9.23.0(jiti@2.4.2))
-      '@stylistic/eslint-plugin-migrate':
-        specifier: ^4.2.0
-        version: 4.2.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)
       '@types/node':
         specifier: ^22.13.17
         version: 22.13.17
@@ -468,9 +465,6 @@ packages:
   '@eslint-react/var@1.40.1':
     resolution: {integrity: sha512-RaOGNvpvI93/kFGXXc4QQ9Koy0J/awA/irJshcSR9p7fSLjarnC60OYDckrt89Cu31B1lZ90AFw+rKvDmnleRw==}
     engines: {bun: '>=1.0.15', node: '>=18.18.0'}
-
-  '@eslint-stylistic/metadata@4.2.0':
-    resolution: {integrity: sha512-CPJxCPov9bS5WCLj/RYuys88ZAQZr57XagceRGx/EOcnlUDafssNofboFIksoYgwSUt0za4v8tGymckFZT04Ug==}
 
   '@eslint/compat@1.2.8':
     resolution: {integrity: sha512-LqCYHdWL/QqKIJuZ/ucMAv8d4luKGs4oCPgpt8mWztQAtPrHfXKQ/XAUc8ljCHAfJCn6SvkpTcGt5Tsh8saowA==}
@@ -871,10 +865,6 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
-
-  '@stylistic/eslint-plugin-migrate@4.2.0':
-    resolution: {integrity: sha512-2Si3nSP/3sSmfVWCTilhzvbWM7To7Dhp1mRFEeGVu75+JUtveRxmcSBraFc5ggatdX4hsDwOJhBf0kqxCLX0NQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@stylistic/eslint-plugin@4.2.0':
     resolution: {integrity: sha512-8hXezgz7jexGHdo5WN6JBEIPHCSFyyU4vgbxevu4YLVS5vl+sxqAAGyXSzfNDyR6xMNSH5H1x67nsXcYMOHtZA==}
@@ -3806,8 +3796,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@eslint-stylistic/metadata@4.2.0': {}
-
   '@eslint/compat@1.2.8(eslint@9.23.0(jiti@2.4.2))':
     optionalDependencies:
       eslint: 9.23.0(jiti@2.4.2)
@@ -4181,15 +4169,6 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@10.0.2': {}
-
-  '@stylistic/eslint-plugin-migrate@4.2.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)':
-    dependencies:
-      '@eslint-stylistic/metadata': 4.2.0
-      '@typescript-eslint/utils': 8.29.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)
-    transitivePeerDependencies:
-      - eslint
-      - supports-color
-      - typescript
 
   '@stylistic/eslint-plugin@4.2.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
