@@ -99,9 +99,11 @@
 	"devDependencies": {
 		"@antfu/ni": "catalog:dev",
 		"@eslint/config-inspector": "catalog:dev",
+		"@slidev/cli": "catalog:dev",
 		"@stylistic/eslint-plugin-migrate": "catalog:dev",
 		"@types/node": "catalog:dev",
 		"@xats/eslint-config": "workspace:*",
+		"astro": "catalog:dev",
 		"bumpp": "catalog:dev",
 		"eslint-typegen": "catalog:dev",
 		"execa": "catalog:dev",
