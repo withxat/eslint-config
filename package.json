@@ -1,7 +1,7 @@
 {
 	"name": "@xats/eslint-config",
 	"type": "module",
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"packageManager": "pnpm@10.7.0",
 	"description": "🧃 Xat's ESLint config preset / Xat 自用强迫症 ESLint 配置",
 	"author": "Xat <i@xat.sh> (https://xat.sh)",
@@ -87,7 +87,6 @@
 	"devDependencies": {
 		"@antfu/ni": "^24.3.0",
 		"@eslint/config-inspector": "^1.0.2",
-		"@stylistic/eslint-plugin-migrate": "^4.2.0",
 		"@types/node": "^22.13.17",
 		"@xats/eslint-config": "workspace:*",
 		"astro": "^5.5.6",
