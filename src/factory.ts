@@ -57,12 +57,6 @@ const VuePackages = [
 	'@slidev/cli',
 ]
 
-const UnocssPackages = [
-	'unocss',
-	'tailwindcss',
-	'@tailwindcss/cli',
-]
-
 export const defaultPluginRenaming = {
 	'@eslint-react': 'react',
 	'@eslint-react/dom': 'react-dom',
@@ -105,7 +99,7 @@ export function xat(
 		svelte: enableSvelte = isPackageExists('svelte'),
 		typescript: enableTypeScript = isPackageExists('typescript'),
 		unicorn: enableUnicorn = true,
-		unocss: enableUnoCSS = UnocssPackages.some(i => isPackageExists(i)),
+		unocss: enableUnoCSS = isPackageExists('unocss'),
 		vue: enableVue = VuePackages.some(i => isPackageExists(i)),
 	} = options
 
