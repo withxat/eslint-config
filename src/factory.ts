@@ -86,6 +86,7 @@ export function xat(
 		astro: enableAstro = isPackageExists('astro'),
 		autoRenamePlugins = true,
 		componentExts = [],
+		formatters: enableFormatters = true,
 		gitignore: enableGitignore = true,
 		jsx: enableJsx = true,
 		paths: enablePaths = true,
@@ -150,8 +151,6 @@ export function xat(
 			stylistic: stylisticOptions,
 		}),
 		command(),
-
-		// Optional plugins (installed but not enabled by default)
 		perfectionist(),
 	)
 
@@ -266,9 +265,9 @@ export function xat(
 		)
 	}
 
-	if (options.formatters) {
+	if (enableFormatters) {
 		configs.push(formatters(
-			options.formatters,
+			enableFormatters,
 			typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
 		))
 	}
