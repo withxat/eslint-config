@@ -39,6 +39,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"peerDependencies": {
+		"@prettier/plugin-xml": "^3.4.1",
 		"eslint": "^9.5.0"
 	},
 	"dependencies": {
