@@ -7,7 +7,7 @@ import { interopDefault } from '@/utils'
 let _pluginTest: any
 
 export async function test(
-	options: OptionsFiles & OptionsIsInEditor & OptionsOverrides = {},
+	options: OptionsFiles & OptionsOverrides & OptionsIsInEditor = {},
 ): Promise<TypedFlatConfigItem[]> {
 	const {
 		files = GLOB_TESTS,

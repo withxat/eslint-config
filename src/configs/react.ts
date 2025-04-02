@@ -1,10 +1,10 @@
 /* eslint-disable perfectionist/sort-objects */
 import type { OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '@/types'
 
+import { isPackageExists } from 'local-pkg'
+
 import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '@/globs'
 import { interopDefault } from '@/utils'
-
-import { isPackageExists } from 'local-pkg'
 
 // react refresh
 const ReactRefreshAllowConstantExportPackages = [
@@ -27,7 +27,7 @@ const NextJsPackages = [
 ]
 
 export async function react(
-	options: OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes & OptionsOverrides & OptionsFiles = {},
+	options: OptionsFiles & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
 ): Promise<TypedFlatConfigItem[]> {
 	const {
 		files = [GLOB_SRC],

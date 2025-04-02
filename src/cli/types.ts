@@ -1,16 +1,16 @@
 export interface PromItem<T> {
+	hint?: string
 	label: string
 	value: T
-	hint?: string
 }
 
-export type FrameworkOption = 'vue' | 'react' | 'svelte' | 'astro' | 'solid' | 'slidev'
+export type FrameworkOption = 'astro' | 'react' | 'slidev' | 'solid' | 'svelte' | 'vue'
 
 export type ExtraLibrariesOption = 'formatter' | 'unocss'
 
 export interface PromptResult {
-	uncommittedConfirmed: boolean
-	frameworks: FrameworkOption[]
 	extra: ExtraLibrariesOption[]
+	frameworks: FrameworkOption[]
+	uncommittedConfirmed: boolean
 	updateVscodeSettings: unknown
 }

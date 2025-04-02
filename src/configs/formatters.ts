@@ -1,9 +1,11 @@
 import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '@/types'
 import type { VendoredPrettierOptions, VendoredPrettierRuleOptions } from '@/vender/prettier-types'
+
+import { isPackageExists } from 'local-pkg'
+
 import { StylisticConfigDefaults } from '@/configs/stylistic'
 import { GLOB_ASTRO, GLOB_ASTRO_TS, GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '@/globs'
 import { interopDefault, parserPlain } from '@/utils'
-import { isPackageExists } from 'local-pkg'
 
 function mergePrettierOptions(
 	options: VendoredPrettierOptions,
@@ -23,7 +25,7 @@ export async function formatters(
 	options: OptionsFormatters | true = {},
 	stylistic: StylisticConfig = {},
 ): Promise<TypedFlatConfigItem[]> {
-	if (options === true) {
+	if (typeof options === 'boolean' && options) {
 		options = {
 			astro: isPackageExists('astro'),
 			css: true,

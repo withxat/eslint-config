@@ -96,10 +96,10 @@ For example:
 
 ```json
 {
-  "scripts": {
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
-  }
+	"scripts": {
+		"lint": "eslint",
+		"lint:fix": "eslint --fix"
+	}
 }
 ```
 
@@ -116,54 +116,54 @@ Add the following settings to your `.vscode/settings.json`:
 
 ```jsonc
 {
-  // Disable the default formatter, use eslint instead
-  "prettier.enable": false,
-  "editor.formatOnSave": false,
+	// Disable the default formatter, use eslint instead
+	"prettier.enable": false,
+	"editor.formatOnSave": false,
 
-  // Auto fix
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
-  },
+	// Auto fix
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "never"
+	},
 
-  // Silent the stylistic rules in you IDE, but still auto fix them
-  "eslint.rules.customizations": [
-    { "rule": "style/*", "severity": "off", "fixable": true },
-    { "rule": "format/*", "severity": "off", "fixable": true },
-    { "rule": "*-indent", "severity": "off", "fixable": true },
-    { "rule": "*-spacing", "severity": "off", "fixable": true },
-    { "rule": "*-spaces", "severity": "off", "fixable": true },
-    { "rule": "*-order", "severity": "off", "fixable": true },
-    { "rule": "*-dangle", "severity": "off", "fixable": true },
-    { "rule": "*-newline", "severity": "off", "fixable": true },
-    { "rule": "*quotes", "severity": "off", "fixable": true },
-    { "rule": "*semi", "severity": "off", "fixable": true }
-  ],
+	// Silent the stylistic rules in you IDE, but still auto fix them
+	"eslint.rules.customizations": [
+		{ "rule": "style/*", "severity": "off", "fixable": true },
+		{ "rule": "format/*", "severity": "off", "fixable": true },
+		{ "rule": "*-indent", "severity": "off", "fixable": true },
+		{ "rule": "*-spacing", "severity": "off", "fixable": true },
+		{ "rule": "*-spaces", "severity": "off", "fixable": true },
+		{ "rule": "*-order", "severity": "off", "fixable": true },
+		{ "rule": "*-dangle", "severity": "off", "fixable": true },
+		{ "rule": "*-newline", "severity": "off", "fixable": true },
+		{ "rule": "*quotes", "severity": "off", "fixable": true },
+		{ "rule": "*semi", "severity": "off", "fixable": true }
+	],
 
-  // Enable eslint for all supported languages
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "html",
-    "markdown",
-    "json",
-    "jsonc",
-    "yaml",
-    "toml",
-    "xml",
-    "gql",
-    "graphql",
-    "astro",
-    "svelte",
-    "css",
-    "less",
-    "scss",
-    "pcss",
-    "postcss"
-  ]
+	// Enable eslint for all supported languages
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"vue",
+		"html",
+		"markdown",
+		"json",
+		"jsonc",
+		"yaml",
+		"toml",
+		"xml",
+		"gql",
+		"graphql",
+		"astro",
+		"svelte",
+		"css",
+		"less",
+		"scss",
+		"pcss",
+		"postcss"
+	]
 }
 ```
 
@@ -271,31 +271,31 @@ And that's it! Or you can configure each integration individually, for example:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-// Type of the project. 'lib' for libraries, the default is 'app'
-	type: 'lib',
+// `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+	ignores: [
+		'**/fixtures',
+		// ...globs
+	],
 
 	// Enable stylistic formatting rules
 	// stylistic: true,
+
+	// Disable jsonc and yaml support
+	jsonc: false,
 
 	// Or customize the stylistic rules
 	stylistic: {
 		indent: 2, // 4, or 'tab'
 		quotes: 'single', // or 'double'
 	},
+	// Type of the project. 'lib' for libraries, the default is 'app'
+	type: 'lib',
 
 	// TypeScript and Vue are autodetected, you can also explicitly enable them:
 	typescript: true,
 	vue: true,
 
-	// Disable jsonc and yaml support
-	jsonc: false,
-	yaml: false,
-
-	// `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-	ignores: [
-		'**/fixtures',
-		// ...globs
-	]
+	yaml: false
 })
 ```
 
@@ -418,9 +418,9 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu()
 	.renamePlugins({
+		node: 'n',
 		ts: '@typescript-eslint',
-		yaml: 'yml',
-		node: 'n'
+		yaml: 'yml'
 		// ...
 	})
 ```
@@ -437,8 +437,8 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu(
 	{
-		vue: true,
-		typescript: true
+		typescript: true,
+		vue: true
 	},
 	{
 		// Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
@@ -463,14 +463,14 @@ We also provided the `overrides` options in each integration to make it easier:
 import antfu from '@antfu/eslint-config'
 
 export default antfu({
-	vue: {
-		overrides: {
-			'vue/operator-linebreak': ['error', 'before'],
-		},
-	},
 	typescript: {
 		overrides: {
 			'ts/consistent-type-definitions': ['error', 'interface'],
+		},
+	},
+	vue: {
+		overrides: {
+			'vue/operator-linebreak': ['error', 'before'],
 		},
 	},
 	yaml: {
@@ -776,12 +776,12 @@ If you want to apply lint and auto-fix before every commit, you can add the foll
 
 ```json
 {
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
-  "lint-staged": {
-    "*": "eslint --fix"
-  }
+	"simple-git-hooks": {
+		"pre-commit": "pnpm lint-staged"
+	},
+	"lint-staged": {
+		"*": "eslint --fix"
+	}
 }
 ```
 

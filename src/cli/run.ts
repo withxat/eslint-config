@@ -4,29 +4,29 @@ import type { ExtraLibrariesOption, FrameworkOption, PromptResult } from '@/cli/
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
+
+import * as p from '@clack/prompts'
+import c from 'ansis'
+
 import { extra, extraOptions, frameworkOptions, frameworks } from '@/cli/constants'
 import { updateEslintFiles } from '@/cli/stages/update-eslint-files'
-
 import { updatePackageJson } from '@/cli/stages/update-package-json'
 import { updateVscodeSettings } from '@/cli/stages/update-vscode-settings'
 import { isGitClean } from '@/cli/utils'
-import * as p from '@clack/prompts'
-
-import c from 'ansis'
 
 export interface CliRunOptions {
 	/**
-	 * Skip prompts and use default values
+	 * Use the extra utils: formatter / perfectionist / unocss
 	 */
-	yes?: boolean
+	extra?: string[]
 	/**
 	 * Use the framework template for optimal customization: vue / react / svelte / astro
 	 */
 	frameworks?: string[]
 	/**
-	 * Use the extra utils: formatter / perfectionist / unocss
+	 * Skip prompts and use default values
 	 */
-	extra?: string[]
+	yes?: boolean
 }
 
 export async function run(options: CliRunOptions = {}): Promise<void> {

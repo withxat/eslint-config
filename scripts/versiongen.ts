@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises'
-import { dependenciesMap } from '@/cli/constants'
+
 import { parsePnpmWorkspaceYaml } from 'pnpm-workspace-yaml'
+
+import { dependenciesMap } from '@/cli/constants'
 
 const names = new Set([
 	'eslint',

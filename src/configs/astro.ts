@@ -4,7 +4,7 @@ import { GLOB_ASTRO } from '@/globs'
 import { interopDefault } from '@/utils'
 
 export async function astro(
-	options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+	options: OptionsFiles & OptionsOverrides & OptionsStylistic = {},
 ): Promise<TypedFlatConfigItem[]> {
 	const {
 		files = [GLOB_ASTRO],
@@ -32,7 +32,6 @@ export async function astro(
 		{
 			files,
 			languageOptions: {
-				globals: pluginAstro.environments.astro.globals,
 				parser: parserAstro,
 				parserOptions: {
 					extraFileExtensions: ['.astro'],
@@ -40,8 +39,12 @@ export async function astro(
 				},
 				sourceType: 'module',
 			},
-			name: 'xat/astro/rules',
+			name: 'xat/astro/parser',
 			processor: 'astro/client-side-ts',
+		},
+		{
+			files,
+			name: 'xat/astro/rules',
 			rules: {
 				// Astro uses top level await for e.g. data fetching
 				// https://docs.astro.build/en/guides/data-fetching/#fetch-in-astro

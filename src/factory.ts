@@ -1,6 +1,10 @@
+import type { Linter } from 'eslint'
+
 import type { RuleOptions } from '@/typegen'
 import type { Awaitable, ConfigNames, OptionsConfig, TypedFlatConfigItem } from '@/types'
-import type { Linter } from 'eslint'
+
+import { FlatConfigComposer } from 'eslint-flat-config-utils'
+import { isPackageExists } from 'local-pkg'
 
 import {
 	astro,
@@ -35,8 +39,6 @@ import {
 import { formatters } from '@/configs/formatters'
 import { regexp } from '@/configs/regexp'
 import { interopDefault, isInEditorEnv } from '@/utils'
-import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { isPackageExists } from 'local-pkg'
 
 const flatConfigProps = [
 	'name',
@@ -87,7 +89,7 @@ export const defaultPluginRenaming = {
  */
 export function xat(
 	options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
-	...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | FlatConfigComposer<any, any> | Linter.Config[]>[]
+	...userConfigs: Awaitable<FlatConfigComposer<any, any> | Linter.Config[] | TypedFlatConfigItem | TypedFlatConfigItem[]>[]
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
 	const {
 		astro: enableAstro = isPackageExists('astro'),
@@ -366,7 +368,7 @@ export function resolveSubOptions<K extends keyof OptionsConfig>(
 export function getOverrides<K extends keyof OptionsConfig>(
 	options: OptionsConfig,
 	key: K,
-): Partial<Linter.RulesRecord & RuleOptions> {
+): Partial<RuleOptions & Linter.RulesRecord> {
 	const sub = resolveSubOptions(options, key)
 	return {
 		...(options.overrides as any)?.[key],

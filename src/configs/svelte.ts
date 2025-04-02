@@ -4,7 +4,7 @@ import { GLOB_SVELTE } from '@/globs'
 import { interopDefault } from '@/utils'
 
 export async function svelte(
-	options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+	options: OptionsFiles & OptionsOverrides & OptionsStylistic & OptionsHasTypeScript = {},
 ): Promise<TypedFlatConfigItem[]> {
 	const {
 		files = [GLOB_SVELTE],
@@ -62,7 +62,6 @@ export async function svelte(
 				'svelte/no-dupe-else-if-blocks': 'error',
 				'svelte/no-dupe-style-properties': 'error',
 				'svelte/no-dupe-use-directives': 'error',
-				'svelte/no-dynamic-slot-name': 'error',
 				'svelte/no-export-load-in-svelte-module-in-kit-pages': 'error',
 				'svelte/no-inner-declarations': 'error',
 				'svelte/no-not-function-handler': 'error',

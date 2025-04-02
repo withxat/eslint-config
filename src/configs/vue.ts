@@ -7,12 +7,13 @@ import type {
 	TypedFlatConfigItem,
 } from '@/types'
 
-import { GLOB_VUE } from '@/globs'
-import { interopDefault } from '@/utils'
 import { mergeProcessors } from 'eslint-merge-processors'
 
+import { GLOB_VUE } from '@/globs'
+import { interopDefault } from '@/utils'
+
 export async function vue(
-	options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+	options: OptionsVue & OptionsFiles & OptionsOverrides & OptionsStylistic & OptionsHasTypeScript = {},
 ): Promise<TypedFlatConfigItem[]> {
 	const {
 		a11y = false,

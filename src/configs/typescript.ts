@@ -9,12 +9,15 @@ import type {
 } from '@/types'
 
 import process from 'node:process'
+
+import { isPackageExists } from 'local-pkg'
+
 import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '@/globs'
 import { pluginAntfu } from '@/plugins'
 import { interopDefault, renameRules } from '@/utils'
 
 export async function typescript(
-	options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions & OptionsProjectType = {},
+	options: OptionsFiles & OptionsOverrides & OptionsProjectType & OptionsComponentExts & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
 ): Promise<TypedFlatConfigItem[]> {
 	const {
 		componentExts = [],
@@ -29,6 +32,15 @@ export async function typescript(
 		GLOB_TSX,
 		...componentExts.map(ext => `**/*.${ext}`),
 	]
+
+	const NestJsPackages = [
+		'@nestjs/common',
+		'@nestjs/core',
+		'@nestjs/platform-express',
+		'@nestjs/platform-fastify',
+	]
+
+	const isUsingNestJs = NestJsPackages.some(index => isPackageExists(index))
 
 	const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX]
 	const ignoresTypeAware = options.ignoresTypeAware ?? [
@@ -80,6 +92,12 @@ export async function typescript(
 				parser: parserTs,
 				parserOptions: {
 					extraFileExtensions: componentExts.map(ext => `.${ext}`),
+					...(isUsingNestJs
+						? {
+								emitDecoratorMetadata: true,
+								experimentalDecorators: true,
+							}
+						: {}),
 					sourceType: 'module',
 					...typeAware
 						? {
