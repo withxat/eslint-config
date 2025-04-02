@@ -39,12 +39,8 @@ export async function astro(
 				},
 				sourceType: 'module',
 			},
-			name: 'xat/astro/parser',
-			processor: 'astro/client-side-ts',
-		},
-		{
-			files,
 			name: 'xat/astro/rules',
+			processor: 'astro/client-side-ts',
 			rules: {
 				// Astro uses top level await for e.g. data fetching
 				// https://docs.astro.build/en/guides/data-fetching/#fetch-in-astro
@@ -61,14 +57,11 @@ export async function astro(
 				'astro/no-unused-define-vars-in-style': 'error',
 				'astro/semi': 'off',
 				'astro/valid-compile': 'error',
-				'paths/import-alias': 'error',
 
 				...stylistic
 					? {
-							'style/indent': 'off',
 							'style/jsx-closing-tag-location': 'off',
 							'style/jsx-one-expression-per-line': 'off',
-							'style/no-multiple-empty-lines': 'off',
 						}
 					: {},
 

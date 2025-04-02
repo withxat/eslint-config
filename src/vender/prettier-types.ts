@@ -6,7 +6,7 @@ export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>
 
 export type VendoredPrettierRuleOptions = VendoredPrettierOptions & {
 	[k: string]: undefined | unknown
-	parser?: BuiltInParserName | ExternalParserName
+	parser?: BuiltInParserName
 }
 
 export interface VendoredPrettierOptionsRequired {
@@ -150,8 +150,6 @@ export type BuiltInParserName =
 	| 'vue'
 	| 'xml'
 	| 'yaml'
-
-export type ExternalParserName = 'astro' | 'slidev'
 
 // This utility is here to handle the case where you have an explicit union
 // between string literals and the generic string type. It would normally

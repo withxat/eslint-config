@@ -61,13 +61,6 @@ export type OptionsTypescript =
 
 export interface OptionsFormatters {
 	/**
-	 * Enable formatting support for Astro.
-	 *
-	 * Currently only support Prettier.
-	 */
-	astro?: 'prettier' | boolean
-
-	/**
 	 * Enable formatting support for CSS, Less, Sass, and SCSS.
 	 *
 	 * Currently only support Prettier.
@@ -108,15 +101,6 @@ export interface OptionsFormatters {
 	 * By default it's controlled by our own config.
 	 */
 	prettierOptions?: VendoredPrettierOptions
-
-	/**
-	 * Install the prettier plugin for handle Slidev markdown
-	 *
-	 * Only works when `markdown` is enabled with `prettier`.
-	 */
-	slidev?: boolean | {
-		files?: string[]
-	}
 
 	/**
 	 * Enable formatting support for SVG.
@@ -324,42 +308,11 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	markdown?: boolean | OptionsOverrides
 
 	/**
-	 * Provide overrides for rules for each integration.
-	 *
-	 * @deprecated use `overrides` option in each integration key instead
-	 */
-	overrides?: {
-		javascript?: TypedFlatConfigItem['rules']
-		jsonc?: TypedFlatConfigItem['rules']
-		markdown?: TypedFlatConfigItem['rules']
-		react?: TypedFlatConfigItem['rules']
-		stylistic?: TypedFlatConfigItem['rules']
-		svelte?: TypedFlatConfigItem['rules']
-		test?: TypedFlatConfigItem['rules']
-		toml?: TypedFlatConfigItem['rules']
-		typescript?: TypedFlatConfigItem['rules']
-		vue?: TypedFlatConfigItem['rules']
-		yaml?: TypedFlatConfigItem['rules']
-	}
-
-	/**
 	 * Enable import paths alias support.
 	 *
 	 * @default true
 	 */
 	paths?: boolean
-
-	/**
-	 * Enable pnpm (workspace/catalogs) support.
-	 *
-	 * Currently it's disabled by default, as it's still experimental.
-	 * In the future it will be smartly enabled based on the project usage.
-	 *
-	 * @see https://github.com/antfu/pnpm-workspace-utils
-	 * @experimental
-	 * @default false
-	 */
-	pnpm?: boolean
 
 	/**
 	 * Enable react rules.
@@ -382,31 +335,12 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	regexp?: boolean | (OptionsRegExp & OptionsOverrides)
 
 	/**
-	 * Enable solid rules.
-	 *
-	 * Requires installing:
-	 * - `eslint-plugin-solid`
-	 *
-	 * @default false
-	 */
-	solid?: boolean | OptionsOverrides
-
-	/**
 	 * Enable stylistic rules.
 	 *
 	 * @see https://eslint.style/
 	 * @default true
 	 */
 	stylistic?: boolean | (StylisticConfig & OptionsOverrides)
-	/**
-	 * Enable svelte rules.
-	 *
-	 * Requires installing:
-	 * - `eslint-plugin-svelte`
-	 *
-	 * @default false
-	 */
-	svelte?: boolean
 
 	/**
 	 * Enable test support.
