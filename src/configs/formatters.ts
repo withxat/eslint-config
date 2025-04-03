@@ -1,9 +1,14 @@
 import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '@/types'
 import type { VendoredPrettierOptions, VendoredPrettierRuleOptions } from '@/vender/prettier-types'
 
+import { createRequire } from 'node:module'
+import { fileURLToPath } from 'node:url'
+
 import { StylisticConfigDefaults } from '@/configs/stylistic'
 import { GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '@/globs'
-import { interopDefault, parserPlain } from '@/utils'
+import { interopDefault, loadPrettierPlugin, parserPlain } from '@/utils'
+
+const require = createRequire(fileURLToPath(import.meta.url))
 
 function mergePrettierOptions(
 	options: VendoredPrettierOptions,
@@ -151,6 +156,8 @@ export async function formatters(
 		})
 	}
 
+	const prettierXml = loadPrettierPlugin('@prettier/plugin-xml', require)
+
 	if (options.xml) {
 		configs.push({
 			files: [GLOB_XML],
@@ -164,7 +171,7 @@ export async function formatters(
 					mergePrettierOptions({ ...prettierXmlOptions, ...prettierOptions }, {
 						parser: 'xml',
 						plugins: [
-							'@prettier/plugin-xml',
+							prettierXml,
 						],
 					}),
 				],
@@ -184,7 +191,7 @@ export async function formatters(
 					mergePrettierOptions({ ...prettierXmlOptions, ...prettierOptions }, {
 						parser: 'xml',
 						plugins: [
-							'@prettier/plugin-xml',
+							prettierXml,
 						],
 					}),
 				],

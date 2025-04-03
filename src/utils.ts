@@ -128,3 +128,9 @@ export function isInGitHooksOrLintStaged(): boolean {
 		|| process.env.npm_lifecycle_script?.startsWith('lint-staged')
 	)
 }
+
+export function loadPrettierPlugin(name: string, require: NodeJS.Require): any {
+	const pluginRaw = require.resolve(name)
+	const plugin = `file:${pluginRaw}`
+	return plugin
+}
