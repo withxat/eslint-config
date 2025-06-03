@@ -128,12 +128,12 @@ export interface OptionsComponentExts {
 }
 
 export interface OptionsUnicorn extends OptionsOverrides {
-  /**
-   * Include all rules recommended by `eslint-plugin-unicorn`, instead of only ones picked by Anthony.
-   *
-   * @default false
-   */
-  allRecommended?: boolean
+	/**
+	 * Include all rules recommended by `eslint-plugin-unicorn`, instead of only ones picked by Anthony.
+	 *
+	 * @default false
+	 */
+	allRecommended?: boolean
 }
 
 export interface OptionsTypeScriptParserOptions {
@@ -343,6 +343,16 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	stylistic?: boolean | (StylisticConfig & OptionsOverrides)
 
 	/**
+	 * Enable svelte rules.
+	 *
+	 * Requires installing:
+	 * - `eslint-plugin-svelte`
+	 *
+	 * @default false
+	 */
+	svelte?: boolean | OptionsOverrides
+
+	/**
 	 * Enable test support.
 	 *
 	 * @default true
@@ -364,16 +374,6 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	 * @default auto-detect based on the dependencies
 	 */
 	typescript?: boolean | OptionsTypescript
-	
-  /**
-   * Enable svelte rules.
-   *
-   * Requires installing:
-   * - `eslint-plugin-svelte`
-   *
-   * @default false
-   */
-  svelte?: boolean | OptionsOverrides
 
 	/**
 	 * Options for eslint-plugin-unicorn.

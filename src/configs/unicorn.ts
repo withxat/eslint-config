@@ -3,18 +3,18 @@ import type { OptionsUnicorn, TypedFlatConfigItem } from '@/types'
 import { pluginUnicorn } from '@/plugins'
 
 export async function unicorn(options: OptionsUnicorn = {}): Promise<TypedFlatConfigItem[]> {
-    const {
-    allRecommended = false,
-    overrides = {},
-  } = options
+	const {
+		allRecommended = false,
+		overrides = {},
+	} = options
 	return [
 		{
 			name: 'xat/unicorn/rules',
 			plugins: {
 				unicorn: pluginUnicorn,
 			},
-      rules: {
-        ...(allRecommended
+			rules: {
+				...(allRecommended
 					? pluginUnicorn.configs.recommended.rules
 					: {
 							'unicorn/consistent-empty-array-spread': 'error',
@@ -42,7 +42,7 @@ export async function unicorn(options: OptionsUnicorn = {}): Promise<TypedFlatCo
 							'unicorn/prefer-type-error': 'error',
 							'unicorn/throw-new-error': 'error',
 						}),
-            ...overrides,
+				...overrides,
 			},
 		},
 	]
