@@ -8,7 +8,6 @@ import { isPackageExists } from 'local-pkg'
 
 import {
 	astro,
-	command,
 	comments,
 	disables,
 	ignores,
@@ -29,8 +28,6 @@ import {
 	toml,
 	typescript,
 	unicorn,
-	unocss,
-	vue,
 	yaml,
 } from '@/configs'
 import { formatters } from '@/configs/formatters'
@@ -46,13 +43,6 @@ const flatConfigProps = [
 	'rules',
 	'settings',
 ] satisfies (keyof TypedFlatConfigItem)[]
-
-const VuePackages = [
-	'vue',
-	'nuxt',
-	'vitepress',
-	'@slidev/cli',
-]
 
 export const defaultPluginRenaming = {
 	'@eslint-react': 'react',
@@ -93,8 +83,6 @@ export function xat(
 		regexp: enableRegexp = true,
 		typescript: enableTypeScript = isPackageExists('typescript'),
 		unicorn: enableUnicorn = true,
-		unocss: enableUnoCSS = isPackageExists('unocss'),
-		vue: enableVue = VuePackages.some(i => isPackageExists(i)),
 	} = options
 
 	let isInEditor = options.isInEditor
@@ -149,16 +137,11 @@ export function xat(
 		imports({
 			stylistic: stylisticOptions,
 		}),
-		command(),
 		perfectionist(),
 	)
 
 	if (enableUnicorn) {
 		configs.push(unicorn(enableUnicorn === true ? {} : enableUnicorn))
-	}
-
-	if (enableVue) {
-		componentExts.push('vue')
 	}
 
 	if (enableJsx) {
@@ -177,7 +160,6 @@ export function xat(
 	if (stylisticOptions) {
 		configs.push(stylistic({
 			...stylisticOptions,
-			lessOpinionated: options.lessOpinionated,
 			overrides: getOverrides(options, 'stylistic'),
 		}))
 	}
@@ -193,27 +175,11 @@ export function xat(
 		}))
 	}
 
-	if (enableVue) {
-		configs.push(vue({
-			...resolveSubOptions(options, 'vue'),
-			overrides: getOverrides(options, 'vue'),
-			stylistic: stylisticOptions,
-			typescript: !!enableTypeScript,
-		}))
-	}
-
 	if (enableReact) {
 		configs.push(react({
 			...typescriptOptions,
 			overrides: getOverrides(options, 'react'),
 			tsconfigPath,
-		}))
-	}
-
-	if (enableUnoCSS) {
-		configs.push(unocss({
-			...resolveSubOptions(options, 'unocss'),
-			overrides: getOverrides(options, 'unocss'),
 		}))
 	}
 

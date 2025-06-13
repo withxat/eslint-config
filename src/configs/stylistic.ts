@@ -10,9 +10,7 @@ export const StylisticConfigDefaults: StylisticConfig = {
 	semi: false,
 }
 
-export interface StylisticOptions extends StylisticConfig, OptionsOverrides {
-	lessOpinionated?: boolean
-}
+export interface StylisticOptions extends StylisticConfig, OptionsOverrides {}
 
 export async function stylistic(
 	options: StylisticOptions = {},
@@ -20,7 +18,6 @@ export async function stylistic(
 	const {
 		indent,
 		jsx,
-		lessOpinionated = false,
 		overrides = {},
 		quotes,
 		semi,
@@ -52,16 +49,9 @@ export async function stylistic(
 				'antfu/consistent-chaining': 'error',
 				'antfu/consistent-list-newline': 'error',
 
-				...(lessOpinionated
-					? {
-							curly: ['error', 'all'],
-						}
-					: {
-							'antfu/curly': 'error',
-							'antfu/if-newline': 'error',
-							'antfu/top-level-function': 'error',
-						}
-				),
+				'antfu/curly': 'error',
+				'antfu/if-newline': 'error',
+				'antfu/top-level-function': 'error',
 
 				'style/generator-star-spacing': ['error', { after: true, before: false }],
 				'style/padding-line-between-statements': [

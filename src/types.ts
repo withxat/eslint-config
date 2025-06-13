@@ -288,17 +288,6 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	jsx?: boolean
 
 	/**
-	 * Disable some opinionated rules to Anthony's preference.
-	 *
-	 * Including:
-	 * - `antfu/top-level-function`
-	 * - `antfu/if-newline`
-	 *
-	 * @default false
-	 */
-	lessOpinionated?: boolean
-
-	/**
 	 * Enable linting for **code snippets** in Markdown.
 	 *
 	 * For formatting Markdown content, enable also `formatters.markdown`.
@@ -343,16 +332,6 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	stylistic?: boolean | (StylisticConfig & OptionsOverrides)
 
 	/**
-	 * Enable svelte rules.
-	 *
-	 * Requires installing:
-	 * - `eslint-plugin-svelte`
-	 *
-	 * @default false
-	 */
-	svelte?: boolean | OptionsOverrides
-
-	/**
 	 * Enable test support.
 	 *
 	 * @default true
@@ -381,23 +360,6 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	 * @default true
 	 */
 	unicorn?: boolean | OptionsUnicorn
-
-	/**
-	 * Enable unocss rules.
-	 *
-	 * Requires installing:
-	 * - `@unocss/eslint-plugin`
-	 *
-	 * @default false
-	 */
-	unocss?: boolean | OptionsUnoCSS
-
-	/**
-	 * Enable Vue support.
-	 *
-	 * @default auto-detect based on the dependencies
-	 */
-	vue?: boolean | OptionsVue
 
 	/**
 	 * Enable YAML support.
