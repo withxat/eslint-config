@@ -16,72 +16,72 @@ export async function markdown(
 
 	const markdown = await interopDefault(import('@eslint/markdown'))
 
-	return [
-		{
-			name: 'xat/markdown/setup',
-			plugins: {
-				markdown,
-			},
-		},
-		{
-			files,
-			ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
-			name: 'xat/markdown/processor',
-			// `eslint-plugin-markdown` only creates virtual files for code blocks,
-			// but not the markdown file itself. We use `eslint-merge-processors` to
-			// add a pass-through processor for the markdown file itself.
-			processor: mergeProcessors([
-				markdown.processors!.markdown,
-				processorPassThrough,
-			]),
-		},
-		{
-			files,
-			languageOptions: {
-				parser: parserPlain,
-			},
-			name: 'xat/markdown/parser',
-		},
-		{
-			files: [
-				GLOB_MARKDOWN_CODE,
-				...componentExts.map(ext => `${GLOB_MARKDOWN}/**/*.${ext}`),
-			],
-			languageOptions: {
-				parserOptions: {
-					ecmaFeatures: {
-						impliedStrict: true,
-					},
-				},
-			},
-			name: 'xat/markdown/disables',
-			rules: {
-				'antfu/no-top-level-await': 'off',
+  return [
+    {
+      name: 'antfu/markdown/setup',
+      plugins: {
+        markdown,
+      },
+    },
+    {
+      files,
+      ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
+      name: 'antfu/markdown/processor',
+      // `eslint-plugin-markdown` only creates virtual files for code blocks,
+      // but not the markdown file itself. We use `eslint-merge-processors` to
+      // add a pass-through processor for the markdown file itself.
+      processor: mergeProcessors([
+        markdown.processors!.markdown,
+        processorPassThrough,
+      ]),
+    },
+    {
+      files,
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'antfu/markdown/parser',
+    },
+    {
+      files: [
+        GLOB_MARKDOWN_CODE,
+        ...componentExts.map(ext => `${GLOB_MARKDOWN}/**/*.${ext}`),
+      ],
+      languageOptions: {
+        parserOptions: {
+          ecmaFeatures: {
+            impliedStrict: true,
+          },
+        },
+      },
+      name: 'antfu/markdown/disables',
+      rules: {
+        'antfu/no-top-level-await': 'off',
 
-				'import/newline-after-import': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
+        'no-labels': 'off',
+        'no-lone-blocks': 'off',
+        'no-restricted-syntax': 'off',
+        'no-undef': 'off',
+        'no-unused-expressions': 'off',
+        'no-unused-labels': 'off',
+        'no-unused-vars': 'off',
 
-				'no-alert': 'off',
-				'no-console': 'off',
-				'no-labels': 'off',
-				'no-lone-blocks': 'off',
-				'no-restricted-syntax': 'off',
-				'no-undef': 'off',
-				'no-unused-expressions': 'off',
-				'no-unused-labels': 'off',
+        'node/prefer-global/process': 'off',
 
-				'no-unused-vars': 'off',
-				'node/prefer-global/process': 'off',
-				'style/comma-dangle': 'off',
-				'style/eol-last': 'off',
+        'style/comma-dangle': 'off',
+        'style/eol-last': 'off',
+        'style/padding-line-between-statements': 'off',
 
-				'ts/consistent-type-imports': 'off',
-				'ts/explicit-function-return-type': 'off',
-				'ts/no-namespace': 'off',
-				'ts/no-redeclare': 'off',
-				'ts/no-require-imports': 'off',
-				'ts/no-unused-expressions': 'off',
-				'ts/no-unused-vars': 'off',
-				'ts/no-use-before-define': 'off',
+        'ts/consistent-type-imports': 'off',
+        'ts/explicit-function-return-type': 'off',
+        'ts/no-namespace': 'off',
+        'ts/no-redeclare': 'off',
+        'ts/no-require-imports': 'off',
+        'ts/no-unused-expressions': 'off',
+        'ts/no-unused-vars': 'off',
+        'ts/no-use-before-define': 'off',
 
 				'unicode-bom': 'off',
 				'unused-imports/no-unused-imports': 'off',

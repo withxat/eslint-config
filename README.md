@@ -489,23 +489,23 @@ Since v2.10.0, the factory function `antfu()` returns a [`FlatConfigComposer` ob
 import antfu from '@antfu/eslint-config'
 
 export default antfu()
-	.prepend(
-		// some configs before the main config
-	)
-// overrides any named configs
-	.override(
-		'antfu/imports',
-		{
-			rules: {
-				'import/order': ['error', { 'newlines-between': 'always' }],
-			}
-		}
-	)
-// rename plugin prefixes
-	.renamePlugins({
-		'old-prefix': 'new-prefix',
-		// ...
-	})
+  .prepend(
+    // some configs before the main config
+  )
+  // overrides any named configs
+  .override(
+    'antfu/stylistic/rules',
+    {
+      rules: {
+        'style/generator-star-spacing': ['error', { after: true, before: false }],
+      }
+    }
+  )
+  // rename plugin prefixes
+  .renamePlugins({
+    'old-prefix': 'new-prefix',
+    // ...
+  })
 // ...
 ```
 
