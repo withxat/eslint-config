@@ -92,6 +92,7 @@ export async function typescript(
 				parser: parserTs,
 				parserOptions: {
 					extraFileExtensions: componentExts.map(ext => `.${ext}`),
+					projectService: typeAware,
 					...(isUsingNestJs
 						? {
 								emitDecoratorMetadata: true,
