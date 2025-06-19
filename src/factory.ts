@@ -52,6 +52,7 @@ export const defaultPluginRenaming = {
 
 	'@stylistic': 'style',
 	'@typescript-eslint': 'ts',
+	'import-lite': 'import',
 	'n': 'node',
 	'vitest': 'test',
 	'yml': 'yaml',
@@ -77,6 +78,7 @@ export function xat(
 		componentExts = [],
 		formatters: enableFormatters = true,
 		gitignore: enableGitignore = true,
+		imports: enableImports = true,
 		jsx: enableJsx = true,
 		paths: enablePaths = true,
 		react: enableReact = isPackageExists('react'),
@@ -146,6 +148,19 @@ export function xat(
 
 	if (enableJsx) {
 		configs.push(jsx())
+	}
+
+	if (enableImports) {
+		configs.push(
+			imports(enableImports === true
+				? {
+						stylistic: stylisticOptions,
+					}
+				: {
+						stylistic: stylisticOptions,
+						...enableImports,
+					}),
+		)
 	}
 
 	if (enableTypeScript) {

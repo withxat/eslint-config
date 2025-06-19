@@ -261,6 +261,13 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	gitignore?: boolean | FlatGitignoreOptions
 
 	/**
+	 * Options for eslint-plugin-import-lite.
+	 *
+	 * @default true
+	 */
+	imports?: boolean | OptionsOverrides
+
+	/**
 	 * Control to disable some rules in editors.
 	 * @default auto-detect based on the process.env
 	 */
@@ -270,7 +277,6 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	 * Core rules. Can't be disabled.
 	 */
 	javascript?: OptionsOverrides
-
 	/**
 	 * Enable JSONC support.
 	 *
