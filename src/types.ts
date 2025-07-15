@@ -55,9 +55,9 @@ export interface OptionsVue extends OptionsOverrides {
 	vueVersion?: 2 | 3
 }
 
-export type OptionsTypescript =
-  (OptionsOverrides & OptionsTypeScriptParserOptions)
-  | (OptionsOverrides & OptionsTypeScriptWithTypes)
+export type OptionsTypescript
+	= (OptionsOverrides & OptionsTypeScriptParserOptions)
+		| (OptionsOverrides & OptionsTypeScriptWithTypes)
 
 export interface OptionsFormatters {
 	/**

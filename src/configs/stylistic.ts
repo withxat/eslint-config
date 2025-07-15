@@ -54,6 +54,7 @@ export async function stylistic(
 				'antfu/top-level-function': 'error',
 
 				'style/generator-star-spacing': ['error', { after: true, before: false }],
+				'style/no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
 				'style/yield-star-spacing': ['error', { after: true, before: false }],
 
 				...overrides,

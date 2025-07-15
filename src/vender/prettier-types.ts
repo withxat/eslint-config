@@ -125,31 +125,31 @@ export interface VendoredPrettierOptionsRequired {
 	xmlWhitespaceSensitivity: 'ignore' | 'preserve' | 'strict'
 }
 
-export type BuiltInParserName =
-	| 'acorn'
-	| 'angular'
-	| 'babel'
-	| 'babel-flow'
-	| 'babel-ts'
-	| 'css'
-	| 'espree'
-	| 'flow'
-	| 'glimmer'
-	| 'graphql'
-	| 'html'
-	| 'json5'
-	| 'json'
-	| 'json-stringify'
-	| 'less'
-	| 'lwc'
-	| 'markdown'
-	| 'mdx'
-	| 'meriyah'
-	| 'scss'
-	| 'typescript'
-	| 'vue'
-	| 'xml'
-	| 'yaml'
+export type BuiltInParserName
+	= | 'acorn'
+		| 'angular'
+		| 'babel'
+		| 'babel-flow'
+		| 'babel-ts'
+		| 'css'
+		| 'espree'
+		| 'flow'
+		| 'glimmer'
+		| 'graphql'
+		| 'html'
+		| 'json5'
+		| 'json'
+		| 'json-stringify'
+		| 'less'
+		| 'lwc'
+		| 'markdown'
+		| 'mdx'
+		| 'meriyah'
+		| 'scss'
+		| 'typescript'
+		| 'vue'
+		| 'xml'
+		| 'yaml'
 
 // This utility is here to handle the case where you have an explicit union
 // between string literals and the generic string type. It would normally
@@ -158,6 +158,6 @@ export type BuiltInParserName =
 //
 // It comes from this issue: microsoft/TypeScript#29729:
 //   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
-export type LiteralUnion<T extends U, U = string> =
-	| (Pick<U, never> & { _?: never | undefined })
-	| T
+export type LiteralUnion<T extends U, U = string>
+	= | (Pick<U, never> & { _?: never | undefined })
+		| T
