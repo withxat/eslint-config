@@ -13,7 +13,7 @@ export interface Rules extends RuleOptions {}
 
 export type { ConfigNames }
 
-export type TypedFlatConfigItem = Omit<Linter.Config<Rules & Linter.RulesRecord>, 'plugins'> & {
+export type TypedFlatConfigItem = Omit<Linter.Config<Rules & Linter.RulesRecord>, 'plugins' | 'rules'> & {
 	// Relax plugins type limitation, as most of the plugins did not have correct type info yet.
 	/**
 	 * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
@@ -21,6 +21,11 @@ export type TypedFlatConfigItem = Omit<Linter.Config<Rules & Linter.RulesRecord>
 	 * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
 	 */
 	plugins?: Record<string, any>
+
+	/**
+	 * Rules configuration. More flexible to allow plugin rules that may not be perfectly typed.
+	 */
+	rules?: Record<string, Linter.RuleEntry<any> | undefined>
 }
 
 export interface OptionsFiles {
