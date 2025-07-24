@@ -17,6 +17,7 @@ import {
 	jsonc,
 	jsx,
 	markdown,
+	nextjs,
 	node,
 	paths,
 	perfectionist,
@@ -80,6 +81,7 @@ export function xat(
 		gitignore: enableGitignore = true,
 		imports: enableImports = true,
 		jsx: enableJsx = true,
+		nextjs: enableNextjs = isPackageExists('next'),
 		paths: enablePaths = true,
 		react: enableReact = isPackageExists('react'),
 		regexp: enableRegexp = true,
@@ -195,6 +197,12 @@ export function xat(
 			...typescriptOptions,
 			overrides: getOverrides(options, 'react'),
 			tsconfigPath,
+		}))
+	}
+
+	if (enableNextjs) {
+		configs.push(nextjs({
+			overrides: getOverrides(options, 'nextjs'),
 		}))
 	}
 

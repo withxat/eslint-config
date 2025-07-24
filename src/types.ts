@@ -308,6 +308,16 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 	markdown?: boolean | OptionsOverrides
 
 	/**
+	 * Enable nextjs rules.
+	 *
+	 * Requires installing:
+	 * - `@next/eslint-plugin-next`
+	 *
+	 * @default false
+	 */
+	nextjs?: boolean | OptionsOverrides
+
+	/**
 	 * Enable import paths alias support.
 	 *
 	 * @default true
