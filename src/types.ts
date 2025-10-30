@@ -2,7 +2,6 @@ import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 import type { ParserOptions } from '@typescript-eslint/parser'
 import type { Linter } from 'eslint'
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
-import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks'
 
 import type { ConfigNames, RuleOptions } from '@/typegen'
 import type { VendoredPrettierOptions } from '@/vender/prettier-types'
@@ -33,31 +32,6 @@ export interface OptionsFiles {
 	 * Override the `files` option to provide custom globs.
 	 */
 	files?: string[]
-}
-
-export interface OptionsVue extends OptionsOverrides {
-	/**
-	 * Vue accessibility plugin. Help check a11y issue in `.vue` files upon enabled
-	 *
-	 * @see https://vue-a11y.github.io/eslint-plugin-vuejs-accessibility/
-	 * @default false
-	 */
-	a11y?: boolean
-
-	/**
-	 * Create virtual files for Vue SFC blocks to enable linting.
-	 *
-	 * @see https://github.com/antfu/eslint-processor-vue-blocks
-	 * @default true
-	 */
-	sfcBlocks?: boolean | VueBlocksOptions
-
-	/**
-	 * Vue version. Apply different rules set from `eslint-plugin-vue`.
-	 *
-	 * @default 3
-	 */
-	vueVersion?: 2 | 3
 }
 
 export type OptionsTypescript

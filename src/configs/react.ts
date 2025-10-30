@@ -61,7 +61,7 @@ export async function react(
 	const isUsingReactRouter = ReactRouterPackages.some(i => isPackageExists(i))
 	const isUsingNext = NextJsPackages.some(i => isPackageExists(i))
 
-	const plugins = pluginReact.configs.all.plugins
+	const plugins = (pluginReact.configs.all as any).plugins
 
 	return [
 		{
@@ -89,6 +89,7 @@ export async function react(
 			name: 'xat/react/rules',
 			rules: {
 				// recommended rules from eslint-plugin-react-x https://eslint-react.xyz/docs/rules/overview#core-rules
+				'react/jsx-no-comment-textnodes': 'warn',
 				'react/jsx-no-duplicate-props': 'warn',
 				'react/jsx-uses-vars': 'warn',
 				'react/no-access-state-in-setstate': 'error',
@@ -99,7 +100,6 @@ export async function react(
 				'react/no-children-only': 'warn',
 				'react/no-children-to-array': 'warn',
 				'react/no-clone-element': 'warn',
-				'react/no-comment-textnodes': 'warn',
 				'react/no-component-will-mount': 'error',
 				'react/no-component-will-receive-props': 'error',
 				'react/no-component-will-update': 'error',
@@ -118,6 +118,7 @@ export async function react(
 				'react/no-set-state-in-component-did-update': 'warn',
 				'react/no-set-state-in-component-will-update': 'warn',
 				'react/no-string-refs': 'error',
+				'react/no-unnecessary-use-prefix': 'warn',
 				'react/no-unsafe-component-will-mount': 'warn',
 				'react/no-unsafe-component-will-receive-props': 'warn',
 				'react/no-unsafe-component-will-update': 'warn',
@@ -127,6 +128,7 @@ export async function react(
 				'react/no-unused-state': 'warn',
 				'react/no-use-context': 'warn',
 				'react/no-useless-forward-ref': 'warn',
+				'react/prefer-use-state-lazy-initialization': 'warn',
 
 				// recommended rules from eslint-plugin-react-dom https://eslint-react.xyz/docs/rules/overview#dom-rules
 				'react-dom/no-dangerously-set-innerhtml': 'warn',
@@ -151,8 +153,6 @@ export async function react(
 
 				// recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
 				'react-hooks-extra/no-direct-set-state-in-use-effect': 'warn',
-				'react-hooks-extra/no-unnecessary-use-prefix': 'warn',
-				'react-hooks-extra/prefer-use-state-lazy-initialization': 'warn',
 
 				// recommended rules from eslint-plugin-react-web-api https://eslint-react.xyz/docs/rules/overview#web-api-rules
 				'react-web-api/no-leaked-event-listener': 'warn',

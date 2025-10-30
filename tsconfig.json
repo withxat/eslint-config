@@ -1,22 +1,12 @@
 {
+	"extends": "@withxat/tsconfig",
 	"compilerOptions": {
-		"target": "ESNext",
-		"baseUrl": ".",
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
 		"paths": {
 			"@/*": ["./src/*"]
 		},
-		"strict": true,
-		"noEmit": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true
+		"noEmit": true
 	},
 	"include": [
-		"**/*.ts"
-	],
-	"exclude": [
-		"./fixtures/**/*.*",
-		"./_fixtures/**/*.*"
+		"src"
 	]
 }
